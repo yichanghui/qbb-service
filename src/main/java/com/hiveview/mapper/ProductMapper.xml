@@ -250,8 +250,15 @@
           p.real_price,
           c.name as className
         FROM j_product p LEFT JOIN j_class c ON p.class_id = c.id
-        where p.member_id =  #{memberId,jdbcType=BIGINT}
-        and p.status != 2
+        <where>
+          <if test="memberId != null" >
+            p.member_id = #{memberId,jdbcType=BIGINT}
+          </if>
+          <if test="status != null" >
+           AND p.status = #{status,jdbcType=TINYINT}
+          </if>
+          and p.status != 2
+        </where>
     </select>
     <select id="getOpendProduct" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Product" >
         SELECT
