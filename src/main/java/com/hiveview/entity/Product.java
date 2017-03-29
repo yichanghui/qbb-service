@@ -44,6 +44,26 @@ public class Product {
 
     private Member member;
 
+    private Integer weightValue;
+
+    private Integer recommend;
+
+    public Integer getWeightValue() {
+        return weightValue;
+    }
+
+    public void setWeightValue(Integer weightValue) {
+        this.weightValue = weightValue;
+    }
+
+    public Integer getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(Integer recommend) {
+        this.recommend = recommend;
+    }
+
     public String getClassCode() {
         return classCode;
     }

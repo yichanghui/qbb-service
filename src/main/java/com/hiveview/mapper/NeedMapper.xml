@@ -55,7 +55,7 @@
           m.mobile,
           m.address
         FROM j_need n LEFT JOIN  j_member m on m.id = n.member_id
-    where n.id = #{needId,jdbcType=BIGINT} and n.member_id = #{memberId}
+    where n.id = #{needId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from j_need

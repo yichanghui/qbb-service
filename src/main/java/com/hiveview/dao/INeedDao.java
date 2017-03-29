@@ -12,7 +12,7 @@ public interface INeedDao extends IBaseDao<Need>{
 
     int insertSelective(Need record);
 
-    Need selectByPrimaryKey(@Param("needId") Long needId, @Param("memberId") Long memberId);
+    Need selectByPrimaryKey(Long needId);
 
     int updateByPrimaryKeySelective(Need record);
 

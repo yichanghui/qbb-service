@@ -44,8 +44,8 @@ public class NeedServiceImpl implements INeedService {
     }
 
     @Override
-    public Need getNeedByIdAndMId(Long needId, Long memberId) {
-        return needDao.selectByPrimaryKey(needId,memberId);
+    public Need getNeedById(Long needId) {
+        return needDao.selectByPrimaryKey(needId);
     }
 
     @Override

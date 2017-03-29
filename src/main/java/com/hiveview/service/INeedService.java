@@ -21,7 +21,7 @@ public interface INeedService {
 
     int updateNeed(Need need);
 
-    Need getNeedByIdAndMId(Long needId, Long memberId);
+    Need getNeedById(Long needId);
 
     List<Need> getOpendNeedPage(Need need);
 

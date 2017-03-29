@@ -19,6 +19,8 @@
     <result column="market_price" property="marketPrice" jdbcType="DECIMAL" />
     <result column="real_price" property="realPrice" jdbcType="DECIMAL" />
     <result column="className" property="className" jdbcType="VARCHAR" />
+    <result column="weight_value" property="weightValue" jdbcType="INTEGER" />
+    <result column="recommend" property="recommend" jdbcType="INTEGER" />
     <association property="member" javaType="com.hiveview.entity.Member">
       <result column="memberName" property="name" jdbcType="VARCHAR" />
       <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR" />
@@ -30,7 +32,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, title, picture, class_id, content, member_id, company_id, status, hits, add_time, 
-    update_time, type, attribute, keywords, market_price, real_price
+    update_time, type, attribute, keywords, market_price, real_price,weight_value,recommend
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -207,6 +209,12 @@
       <if test="realPrice != null" >
         real_price = #{realPrice,jdbcType=DECIMAL},
       </if>
+      <if test="recommend != null" >
+        recommend = #{recommend},
+      </if>
+      <if test="weightValue != null" >
+        weight_value = #{weightValue},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -259,6 +267,7 @@
           </if>
           and p.status != 2
         </where>
+        order by add_time desc
     </select>
     <select id="getOpendProduct" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Product" >
         SELECT
