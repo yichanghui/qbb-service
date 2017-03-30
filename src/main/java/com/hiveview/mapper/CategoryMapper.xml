@@ -26,6 +26,10 @@
     delete from j_class
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteCategoryByCode" parameterType="java.lang.String" >
+    delete from j_class
+    where code like  CONCAT(#{code},'%')
+  </delete>
   <insert id="insert" parameterType="com.hiveview.entity.Category" >
     insert into j_class (id, name, full_name, 
       level,  add_time, type,
@@ -139,8 +143,8 @@
       <if test="id != null" >
         id = #{id,jdbcType=BIGINT}
       </if>
-      <if test="name != null" >
-       AND name = #{name,jdbcType=VARCHAR}
+      <if test="name != null " >
+       AND name like CONCAT('%',#{name},'%')
       </if>
       <if test="fullName != null" >
         AND full_name = #{fullName,jdbcType=VARCHAR}
@@ -155,6 +159,9 @@
       <if test="status != null" >
         AND status = #{status,jdbcType=TINYINT}
       </if>
+      <if test="code != null" >
+        AND  code like  CONCAT(#{code},'%')
+      </if>
     </where>
   </select>
   <select id="getSonCategory" resultMap="BaseResultMap" parameterType="long" >
@@ -163,4 +170,11 @@
     from j_class
     WHERE  parent_id = #{parentId}
   </select>
+
+    <delete id="batchDelete" parameterType="java.util.List">
+      DELETE FROM j_class WHERE id IN
+      <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </delete>
 </mapper>

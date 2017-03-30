@@ -112,4 +112,10 @@
       </if>
     </where>
   </select>
+  <delete id="batchDeleteAttr" parameterType="java.util.List">
+    DELETE FROM j_class_attribute WHERE class_id IN
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

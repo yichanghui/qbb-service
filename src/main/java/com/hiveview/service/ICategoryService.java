@@ -31,4 +31,10 @@ public interface ICategoryService {
      * @return
      */
     List<Attribute> getCategoryAttribute(long categoryId);
+
+    int updateCategory(Category category);
+
+    int deleteCategoryByCode(String code);
+
+    void batchDelete(List<Long> ids);
 }

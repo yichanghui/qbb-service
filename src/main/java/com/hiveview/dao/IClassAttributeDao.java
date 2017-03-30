@@ -2,6 +2,8 @@ package com.hiveview.dao;
 
 import com.hiveview.entity.Attribute;
 
+import java.util.List;
+
 public interface IClassAttributeDao extends IBaseDao<Attribute>{
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface IClassAttributeDao extends IBaseDao<Attribute>{
     int updateByPrimaryKeySelective(Attribute record);
 
     int updateByPrimaryKey(Attribute record);
+
+    void batchDeleteAttr(List<Long> ids);
 }

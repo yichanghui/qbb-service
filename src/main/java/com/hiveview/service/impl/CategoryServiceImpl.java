@@ -43,4 +43,20 @@ public class CategoryServiceImpl implements ICategoryService {
         attribute.setClassId(categoryId);
         return classAttributeDao.getList(attribute);
     }
+
+    @Override
+    public int updateCategory(Category category) {
+        return categoryDao.updateByPrimaryKeySelective(category);
+    }
+
+    @Override
+    public int deleteCategoryByCode(String code) {
+        return categoryDao.deleteCategoryByCode(code);
+    }
+
+    @Override
+    public void batchDelete(List<Long> ids) {
+         categoryDao.batchDelete(ids);
+        classAttributeDao.batchDeleteAttr(ids);
+    }
 }

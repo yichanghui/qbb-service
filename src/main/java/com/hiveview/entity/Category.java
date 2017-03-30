@@ -17,6 +17,8 @@ public class Category {
 
     private Long threeLevel;
 
+    private Date updateTime;
+
     private Date addTime;
 
     private Integer type;
@@ -26,6 +28,14 @@ public class Category {
     private String attribute;
 
     private String code;
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public String getCode() {
         return code;

@@ -18,4 +18,8 @@ public interface ICategoryDao extends  IBaseDao<Category>{
     int updateByPrimaryKey(Category record);
 
     List<Category> getSonCategory(long parentId);
+
+    int deleteCategoryByCode(String code);
+
+    int batchDelete(List<Long> ids);
 }
