@@ -356,6 +356,9 @@
       <if test="id != null" >
         id = #{id,jdbcType=BIGINT}
       </if>
+      <if test="name != null" >
+        name like  CONCAT('%',#{name,jdbcType=BIGINT},'%')
+      </if>
       <if test="sex != null" >
         AND sex = #{sex,jdbcType=CHAR}
       </if>

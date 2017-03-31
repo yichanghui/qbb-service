@@ -43,5 +43,7 @@ public interface IMemberService {
 	 * @return  needViewCount  viewId
 	 */
 	Map<String, Object> getViewNeedCount(Long memberId, long needId);
+
+    List<Member> getMemberList(Member member);
 }
 

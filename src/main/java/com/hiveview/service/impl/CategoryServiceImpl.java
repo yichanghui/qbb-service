@@ -5,10 +5,16 @@ import com.hiveview.dao.IClassAttributeDao;
 import com.hiveview.entity.Attribute;
 import com.hiveview.entity.Category;
 import com.hiveview.service.ICategoryService;
+import com.sun.org.apache.bcel.internal.classfile.Code;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import utils.LevelUtil;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by hxq on 2017/3/13.
@@ -48,6 +54,10 @@ public class CategoryServiceImpl implements ICategoryService {
     public int updateCategory(Category category) {
         return categoryDao.updateByPrimaryKeySelective(category);
     }
+    @Override
+    public int updateByCode(Category category) {
+        return categoryDao.updateByCode(category);
+    }
 
     @Override
     public int deleteCategoryByCode(String code) {
@@ -57,6 +67,41 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public void batchDelete(List<Long> ids) {
          categoryDao.batchDelete(ids);
-        classAttributeDao.batchDeleteAttr(ids);
     }
+
+    @Override
+    public Category getCategoryAndAttr(long id) {
+        Category category = new Category();
+        category.setId(id);
+        List<Category> categories = categoryDao.getCategoryAndAttr(category);
+        Optional<Category> result = Optional.ofNullable(categories).map(categories1 -> categories1.get(0));
+        return result.isPresent()?result.get():null;
+    }
+
+    @Override
+    public void updateCategoryAndAttr(Category category) {
+        categoryDao.updateByPrimaryKeySelective(category);
+        List<Attribute> attrs = category.getAttributes();
+        if (CollectionUtils.isNotEmpty(attrs)) {
+            List<Attribute> isNoNullData = attrs.stream().filter(attribute -> StringUtils.isNotEmpty(attribute.getName())).collect(Collectors.toList());
+            if (CollectionUtils.isNotEmpty(isNoNullData)) {
+                classAttributeDao.deleteByClassId(isNoNullData.get(0).getClassId());
+                classAttributeDao.batchSaveAttr(isNoNullData);
+            }
+        }
+    }
+
+    @Override
+    public void saveCategory(Category category) {
+        categoryDao.insert(category);
+        String code;
+        if (category.getLevel() == LevelUtil.ONE_LEVEL.getVal()) {
+            code = category.getId() + "-";
+        } else {
+            code = category.getParentCode()+category.getId() + "-";
+        }
+        category.setCode(code);
+        categoryDao.updateByPrimaryKeySelective(category);
+    }
+
 }

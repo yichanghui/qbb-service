@@ -17,5 +17,7 @@ public interface IClassAttributeDao extends IBaseDao<Attribute>{
 
     int updateByPrimaryKey(Attribute record);
 
-    void batchDeleteAttr(List<Long> ids);
+    int deleteByClassId(Long classId);
+
+    void batchSaveAttr(List<Attribute> isNoNullData);
 }

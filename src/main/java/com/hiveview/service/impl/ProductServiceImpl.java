@@ -31,7 +31,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public int saveProduct(Product product) {
-        return productDao.insert(product);
+        return productDao.insertSelective(product);
     }
 
     @Override

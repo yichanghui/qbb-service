@@ -43,7 +43,7 @@ public  class MemberServiceImpl implements IMemberService{
 
     @Override
     public Integer saveMember(Member member) {
-        return memberDao.insert(member);
+        return memberDao.insertSelective(member);
     }
 
     @Override
@@ -77,6 +77,11 @@ public  class MemberServiceImpl implements IMemberService{
     @Override
     public Map<String, Object> getViewNeedCount(Long memberId, long needId) {
         return memberDao.getViewNeedCount(memberId,needId);
+    }
+
+    @Override
+    public List<Member> getMemberList(Member member) {
+        return memberDao.getList(member);
     }
 
 }

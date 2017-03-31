@@ -34,7 +34,24 @@ public interface ICategoryService {
 
     int updateCategory(Category category);
 
+    int updateByCode(Category category);
+
     int deleteCategoryByCode(String code);
 
     void batchDelete(List<Long> ids);
+
+    /**
+     * 获得类目和他的属性
+     * @param id 类目id
+     * @return
+     */
+    Category getCategoryAndAttr(long id);
+
+    /**
+     * 修改类目和属性
+     * @param category
+     */
+    void updateCategoryAndAttr(Category category);
+
+    void saveCategory(Category category);
 }

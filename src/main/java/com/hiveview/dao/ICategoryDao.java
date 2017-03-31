@@ -22,4 +22,8 @@ public interface ICategoryDao extends  IBaseDao<Category>{
     int deleteCategoryByCode(String code);
 
     int batchDelete(List<Long> ids);
+
+    List<Category> getCategoryAndAttr(Category category);
+
+    int updateByCode(Category category);
 }

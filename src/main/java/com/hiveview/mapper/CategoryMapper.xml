@@ -11,6 +11,10 @@
     <result column="status" property="status" jdbcType="TINYINT" />
     <result column="attribute" property="attribute" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
+    <collection property="attributes" ofType="com.hiveview.entity.Attribute">
+      <result column="classId" property="classId" jdbcType="BIGINT" />
+      <result column="attrName" property="name" jdbcType="VARCHAR" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, full_name, level, add_time, type, status,
@@ -20,7 +24,7 @@
     select 
     <include refid="Base_Column_List" />
     from j_class
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}   AND  status != 2
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from j_class
@@ -30,13 +34,11 @@
     delete from j_class
     where code like  CONCAT(#{code},'%')
   </delete>
-  <insert id="insert" parameterType="com.hiveview.entity.Category" >
+  <insert id="insert" parameterType="com.hiveview.entity.Category" useGeneratedKeys="true" keyProperty="id">
     insert into j_class (id, name, full_name, 
-      level,  add_time, type,
-      status, attribute)
+      level,  add_time, type,parent_id)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR},
-      #{level,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT},
-      #{status,jdbcType=TINYINT}, #{attribute,jdbcType=VARCHAR})
+      #{level,jdbcType=TINYINT}, now(), #{type,jdbcType=TINYINT},#{parentId})
   </insert>
   <insert id="insertSelective" parameterType="com.hiveview.entity.Category" >
     insert into j_class
@@ -119,8 +121,39 @@
       <if test="attribute != null" >
         attribute = #{attribute,jdbcType=VARCHAR},
       </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByCode" parameterType="com.hiveview.entity.Category" >
+    update j_class
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=TINYINT},
+      </if>
+
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="attribute != null" >
+        attribute = #{attribute,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code like  CONCAT(#{code},'%')
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hiveview.entity.Category" >
     update j_class
@@ -162,13 +195,54 @@
       <if test="code != null" >
         AND  code like  CONCAT(#{code},'%')
       </if>
+      AND  status != 2
+    </where>
+  </select>
+  <select id="getCategoryAndAttr" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Category" >
+    select
+      c.id,
+      c.name,
+      c.full_name,
+      c.level,
+      c.add_time,
+      c.type,
+      c.status,
+      c.attribute,
+      c.code,
+      a.name AS attrName,
+      a.class_id as classId
+    FROM j_class c LEFT JOIN j_class_attribute a on c.id= a.class_id
+    <where>
+      <if test="id != null" >
+        c.id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="name != null " >
+       AND c.name like CONCAT('%',#{name},'%')
+      </if>
+      <if test="fullName != null" >
+        AND c.full_name = #{fullName,jdbcType=VARCHAR}
+      </if>
+      <if test="level != null" >
+        AND c.level = #{level,jdbcType=TINYINT}
+      </if>
+
+      <if test="type != null" >
+        AND c.type = #{type,jdbcType=TINYINT}
+      </if>
+      <if test="status != null" >
+        AND c.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="code != null" >
+        AND  c.code like  CONCAT(#{code},'%')
+      </if>
+      AND  status != 2
     </where>
   </select>
   <select id="getSonCategory" resultMap="BaseResultMap" parameterType="long" >
     select
     <include refid="Base_Column_List" />
     from j_class
-    WHERE  parent_id = #{parentId}
+    WHERE  parent_id = #{parentId}   AND  status != 2
   </select>
 
     <delete id="batchDelete" parameterType="java.util.List">

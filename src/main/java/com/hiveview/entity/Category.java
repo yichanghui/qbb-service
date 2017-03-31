@@ -1,6 +1,7 @@
 package com.hiveview.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Category {
     private Long id;
@@ -28,6 +29,36 @@ public class Category {
     private String attribute;
 
     private String code;
+
+    private String parentCode;
+
+    private String parentId;
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getParentCode() {
+        return parentCode;
+    }
+
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+    }
+
+    private List<Attribute> attributes;
+
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
 
     public Date getUpdateTime() {
         return updateTime;

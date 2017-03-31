@@ -28,6 +28,7 @@
       <result column="address" property="address" jdbcType="VARCHAR" />
     </association>
     <collection property="attributes" ofType="com.hiveview.entity.Attribute">
+        <result column="classId" property="classId" jdbcType="BIGINT" />
         <result column="attrName" property="name" jdbcType="VARCHAR" />
         <result column="attrValue" property="value" jdbcType="VARCHAR" />
     </collection>
@@ -118,6 +119,7 @@
       <if test="updateTime != null" >
         update_time,
       </if>
+      end_time,need_mobile
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +164,7 @@
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      , #{endTime,jdbcType=TIMESTAMP},#{needMobile,jdbcType=VARCHAR}
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.hiveview.entity.Need" >
@@ -339,6 +342,7 @@
           m.address,
           a.name as attrName,
           a.value as attrValue,
+          a.classId as classId,
           a1.full_name as areaFullName
         FROM j_need n LEFT JOIN j_class c ON n.class_id = c.id
                       LEFT JOIN  j_member m on m.id = n.member_id
