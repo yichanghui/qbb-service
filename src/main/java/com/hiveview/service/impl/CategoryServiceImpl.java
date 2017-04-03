@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import utils.LevelUtil;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -74,8 +75,8 @@ public class CategoryServiceImpl implements ICategoryService {
         Category category = new Category();
         category.setId(id);
         List<Category> categories = categoryDao.getCategoryAndAttr(category);
-        Optional<Category> result = Optional.ofNullable(categories).map(categories1 -> categories1.get(0));
-        return result.isPresent()?result.get():null;
+        Category result = Optional.ofNullable(categories).filter(c -> c.size() > 0).map(c1 -> c1.get(0)).orElse(null);
+        return result;
     }
 
     @Override
@@ -93,7 +94,8 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public void saveCategory(Category category) {
-        categoryDao.insert(category);
+        category.setAddTime(new Date());
+        categoryDao.insertSelective(category);
         String code;
         if (category.getLevel() == LevelUtil.ONE_LEVEL.getVal()) {
             code = category.getId() + "-";

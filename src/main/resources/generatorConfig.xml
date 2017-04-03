@@ -75,7 +75,7 @@
         </javaClientGenerator>
 
         <!-- 配置表名跟pojo名  该table节点可以多个 -->
-        <table schema="project" tableName="j_adviser_recommend" domainObjectName="AdviserRecommend" enableCountByExample="false" enableUpdateByExample="false"
+        <table schema="project" tableName="j_member_recommend" domainObjectName="MemberRecommend" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="fawaslse">
             <!--<property name="useActualColumnNames" value="false" />-->

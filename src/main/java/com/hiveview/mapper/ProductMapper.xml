@@ -259,8 +259,11 @@
           c.name as className
         FROM j_product p LEFT JOIN j_class c ON p.class_id = c.id
         <where>
+          <if test="title != null" >
+            p.title like  CONCAT('%',#{title,jdbcType=BIGINT},'%')
+          </if>
           <if test="memberId != null" >
-            p.member_id = #{memberId,jdbcType=BIGINT}
+          AND p.member_id = #{memberId,jdbcType=BIGINT}
           </if>
           <if test="status != null" >
            AND p.status = #{status,jdbcType=TINYINT}

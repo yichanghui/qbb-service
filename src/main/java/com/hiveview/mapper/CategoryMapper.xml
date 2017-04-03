@@ -40,7 +40,7 @@
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR},
       #{level,jdbcType=TINYINT}, now(), #{type,jdbcType=TINYINT},#{parentId})
   </insert>
-  <insert id="insertSelective" parameterType="com.hiveview.entity.Category" >
+  <insert id="insertSelective" parameterType="com.hiveview.entity.Category" useGeneratedKeys="true" keyProperty="id" >
     insert into j_class
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
