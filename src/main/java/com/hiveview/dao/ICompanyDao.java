@@ -4,6 +4,8 @@ import com.hiveview.entity.Company;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface ICompanyDao extends IBaseDao<Company>{
     int deleteByPrimaryKey(Long id);
@@ -28,4 +30,7 @@ public interface ICompanyDao extends IBaseDao<Company>{
     List<Company> getCompanyPage(@Param("company") Company company, @Param("start") int start, @Param("count") int count);
 
     List<Company> getCompany(Company company);
+
+    List<Map<String,Object>> getCompanyByCompanyIds(List<Long> list);
+
 }

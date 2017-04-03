@@ -1,6 +1,7 @@
 package com.hiveview.dao;
 
 import com.hiveview.entity.Need;
+import com.hiveview.entity.UserNeed;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,4 +26,11 @@ public interface INeedDao extends IBaseDao<Need>{
     Need getNeedDetail(Need need);
 
     int addHitsByNid(long id);
+
+    /*
+        用户需要部分
+     */
+    List<UserNeed> getUserNeed(UserNeed userNeed);
+    int updateUserNeedByPrimaryKey(UserNeed userNeed);
+    int insertUserNeed(UserNeed userNeed);
 }
