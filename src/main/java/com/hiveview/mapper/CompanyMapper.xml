@@ -146,12 +146,24 @@
     <include refid="Base_Column_List" />
     from j_company
     <where>
-        <if test="id != null" >
-          id = #{company.id,jdbcType=BIGINT}
-        </if>
-        <if test="companyName != null and companyName != ''" >
-          AND   company_name   LIKE CONCAT('%',#{companyName,jdbcType=VARCHAR} ,'%')
-        </if>
+      <if test="id != null" >
+        id = #{company.id,jdbcType=BIGINT}
+      </if>
+      <if test="companyName != null and companyName != ''" >
+        AND   company_name   LIKE CONCAT('%',#{companyName,jdbcType=VARCHAR} ,'%')
+      </if>
+    </where>
+  </select>
+
+  <select id="getCompanyByCompanyIds" resultType="map">
+    select
+    id,company_name AS companyName
+    from j_company
+    <where>
+      id IN
+      <foreach collection="list" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
     </where>
   </select>
 </mapper>
