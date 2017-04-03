@@ -2,6 +2,7 @@ package com.hiveview.service;
 
 import com.hiveview.entity.Attribute;
 import com.hiveview.entity.Need;
+import com.hiveview.entity.UserNeed;
 
 import java.util.List;
 
@@ -68,4 +69,10 @@ public interface INeedService {
      * @return
      */
     boolean isViewed(Long memberId, long needId);
+
+    /**用户从前台发布的需求（类似帮我找）start **/
+    List<UserNeed> getUserNeed(UserNeed userNeed);
+    int updateUserNeedByPrimaryKey(UserNeed userNeed);
+    int addUserNeed(UserNeed userNeed);
+    /**用户从前台发布的需求（类似帮我找）end **/
 }

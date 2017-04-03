@@ -10,7 +10,7 @@ public class Paging {
 	/**
 	 * 每页记录条数
 	 */
-	private int pageSize = 5;
+	private int pageSize = 10;
 	/**
 	 * 记录总条数
 	 */

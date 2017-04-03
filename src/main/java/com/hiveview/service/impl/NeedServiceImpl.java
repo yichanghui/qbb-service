@@ -3,10 +3,7 @@ package com.hiveview.service.impl;
 import com.hiveview.dao.IMemberViewNeedDao;
 import com.hiveview.dao.INeedAttributeDao;
 import com.hiveview.dao.INeedDao;
-import com.hiveview.entity.Attribute;
-import com.hiveview.entity.Member;
-import com.hiveview.entity.MemberViewNeed;
-import com.hiveview.entity.Need;
+import com.hiveview.entity.*;
 import com.hiveview.service.INeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,5 +97,20 @@ public class NeedServiceImpl implements INeedService {
         memberViewNeed.setMemberId(memberId);
         memberViewNeed = memberViewNeedDao.get(memberViewNeed);
         return Optional.ofNullable(memberViewNeed).isPresent();
+    }
+
+    @Override
+    public List<UserNeed> getUserNeed(UserNeed userNeed) {
+        return needDao.getUserNeed(userNeed);
+    }
+
+    @Override
+    public int updateUserNeedByPrimaryKey(UserNeed userNeed) {
+        return needDao.updateUserNeedByPrimaryKey(userNeed);
+    }
+
+    @Override
+    public int addUserNeed(UserNeed userNeed) {
+        return needDao.insertUserNeed(userNeed);
     }
 }

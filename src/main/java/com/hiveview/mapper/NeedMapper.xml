@@ -364,4 +364,38 @@
         </where>
     </select>
 
+  <insert id="insertUserNeed" parameterType="com.hiveview.entity.UserNeed" useGeneratedKeys="true" keyProperty="id">
+    insert into j_user_need (category_code, need_desc,
+    mobile, add_time, is_contact,member_id)
+    values (#{categoryCode,jdbcType=VARCHAR}, #{needDesc,jdbcType=VARCHAR},
+    #{mobile,jdbcType=VARCHAR}, NOW(), #{isContact,jdbcType=TINYINT},#{memberId,jdbcType=BIGINT})
+  </insert>
+
+  <!--用户自定义需求 start-->
+  <update id="updateUserNeedByPrimaryKey" parameterType="com.hiveview.entity.UserNeed" >
+    update j_need SET is_contact = #{isContact,jdbcType=TINYINT}) WHERE id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getUserNeed" resultMap="BaseResultMap" parameterType="com.hiveview.entity.UserNeed" >
+    SELECT
+    n.id AS id,
+    n.category_code AS categoryCode,
+    n.need_desc AS needDesc,
+    n.need_mobile AS needMobile,
+    n.mobile AS mobile,
+    c.add_time as addTime,
+    m.is_contact AS isContact
+    FROM j_user_need n
+    <where>
+      <if test="isContact != null" >
+        n.is_contact = #{isContact,jdbcType=TINYINT}
+      </if>
+      <if test="categoryCode != null and categoryCode != ''" >
+        AND  category_code like CONCAT(#{categoryCode},'%')
+      </if>
+    </where>
+    ORDER BY add_time DESC
+  </select>
+  <!--用户自定义需求 end-->
+
 </mapper>
