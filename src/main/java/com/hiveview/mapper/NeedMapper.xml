@@ -255,6 +255,7 @@
           n.status,
           n.class_id,
           n.add_time,
+      n.hits,
           n.update_time,
           n.need_mobile,
           n.charge_type,
@@ -342,7 +343,7 @@
           m.address,
           a.name as attrName,
           a.value as attrValue,
-          a.classId as classId,
+          a.class_id as classId,
           a1.full_name as areaFullName
         FROM j_need n LEFT JOIN j_class c ON n.class_id = c.id
                       LEFT JOIN  j_member m on m.id = n.member_id
