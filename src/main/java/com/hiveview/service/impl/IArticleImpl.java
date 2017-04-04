@@ -37,4 +37,9 @@ public class IArticleImpl implements IArticleService {
     public Article getArticleById(long articleId) {
         return articleDao.selectByPrimaryKey(articleId);
     }
+
+    @Override
+    public void addPageView(long articleId) {
+        articleDao.addPageView(articleId);
+    }
 }

@@ -16,4 +16,6 @@ public interface IArticleDao extends IBaseDao<Article>{
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    void addPageView(long articleId);
 }

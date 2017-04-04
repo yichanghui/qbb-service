@@ -192,6 +192,11 @@
           AND  a.operator_id = #{operatorId,jdbcType=INTEGER}
         </if>
       </where>
-
   </select>
+  <update id="addPageView" parameterType="long" >
+    update j_article
+    set
+      page_view = page_view + 1
+    where id = #{articleId,jdbcType=BIGINT}
+  </update>
 </mapper>

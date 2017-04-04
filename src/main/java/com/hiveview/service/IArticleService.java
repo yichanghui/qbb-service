@@ -17,4 +17,10 @@ public interface IArticleService {
     void updateArticle(Article article);
 
     Article getArticleById(long articleId);
+
+    /**
+     * 添加浏览量
+     * @param articleId
+     */
+    void addPageView(long articleId);
 }
