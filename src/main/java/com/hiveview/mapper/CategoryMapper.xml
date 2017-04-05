@@ -67,6 +67,9 @@
       <if test="attribute != null" >
         attribute,
       </if>
+      <if test="parentId != null" >
+        parent_id
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -93,6 +96,9 @@
       </if>
       <if test="attribute != null" >
         #{attribute,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
