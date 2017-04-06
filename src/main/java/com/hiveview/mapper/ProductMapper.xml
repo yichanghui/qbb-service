@@ -27,7 +27,7 @@
       <result column="description" property="description" jdbcType="VARCHAR" />
       <result column="mobile" property="mobile" jdbcType="VARCHAR" />
       <result column="address" property="address" jdbcType="VARCHAR" />
-      <result column="adviser_type" property="adviserType" jdbcType="TINYINT" />
+      <result column="adviser_type" property="adviserType"/>
     </association>
   </resultMap>
   <sql id="Base_Column_List" >

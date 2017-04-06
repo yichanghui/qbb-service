@@ -26,7 +26,7 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="need_view_count" property="needViewCount" jdbcType="VARCHAR" />
     <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
-    <result column="adviser_type" property="adviserType" jdbcType="TINYINT" />
+    <result column="adviser_type" property="adviserType" />
     <result column="relate_company_date" property="relateCompanyDate" jdbcType="TIMESTAMP" />
     <result column="areaFullName" property="areaFullName" jdbcType="VARCHAR" />
   </resultMap>
@@ -248,7 +248,7 @@
         need_view_count = #{needViewCount,jdbcType=LONGVARCHAR},
       </if>
       <if test="adviserType != null" >
-        adviser_type = #{adviserType,jdbcType=LONGVARCHAR},
+        adviser_type = #{adviserType},
       </if>
       <if test="areaCode != null" >
         area_code = #{areaCode,jdbcType=LONGVARCHAR},
