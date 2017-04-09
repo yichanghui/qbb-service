@@ -52,6 +52,16 @@ public class Need {
 
     private String areaFullName;
 
+    private Integer memberType;
+
+    public Integer getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(Integer memberType) {
+        this.memberType = memberType;
+    }
+
     public String getAreaFullName() {
         return areaFullName;
     }
@@ -243,4 +253,5 @@ public class Need {
     public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
     }
+
 }

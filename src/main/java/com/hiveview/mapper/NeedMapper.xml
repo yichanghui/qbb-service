@@ -316,9 +316,12 @@
             <if test="areaCode != null and areaCode != ''" >
              AND  m.area_code like  CONCAT(#{areaCode},'%')
             </if>
-            <if test="classCode != null and classCode != ''" >
-             AND  c.code  like  CONCAT(#{classCode},'%')
-            </if>
+          <if test="classCode != null and classCode != ''" >
+            AND  c.code  like  CONCAT(#{classCode},'%')
+          </if>
+          <if test="memberType != null and memberType != ''" >
+            AND  n.member_type  =  #{memberType}
+          </if>
         </where>
     </select>
     <select id="getNeedDetail" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Need" >
