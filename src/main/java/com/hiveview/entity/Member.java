@@ -66,6 +66,16 @@ public class Member {
 
 	private String areaFullName;
 
+	private boolean recommendShow = false;//推荐的顾问展示
+
+	public boolean isRecommendShow() {
+		return recommendShow;
+	}
+
+	public void setRecommendShow(boolean recommendShow) {
+		this.recommendShow = recommendShow;
+	}
+
 	public String getAreaFullName() {
 		return areaFullName;
 	}

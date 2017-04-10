@@ -16,5 +16,7 @@ public interface IMemberRecommendService {
 
     void saveRecommend(MemberRecommend productRecommend);
 
-    MemberRecommend getMemberRecommendByMId(long productId);
+    MemberRecommend getMemberRecommendByMId(long memberId);
+
+    void deleteById(long recommendId);
 }

@@ -54,6 +54,16 @@ public class Need {
 
     private Integer memberType;
 
+    private boolean recommendShow = false;//推荐展示
+
+    public boolean isRecommendShow() {
+        return recommendShow;
+    }
+
+    public void setRecommendShow(boolean recommendShow) {
+        this.recommendShow = recommendShow;
+    }
+
     public Integer getMemberType() {
         return memberType;
     }

@@ -48,6 +48,16 @@ public class Product {
 
     private Integer recommend;
 
+    private boolean recommendShow = false;//推荐展示
+
+    public boolean isRecommendShow() {
+        return recommendShow;
+    }
+
+    public void setRecommendShow(boolean recommendShow) {
+        this.recommendShow = recommendShow;
+    }
+
     public Integer getWeightValue() {
         return weightValue;
     }

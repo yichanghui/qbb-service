@@ -41,4 +41,9 @@ public class MemberRecommentServiceImpl implements IMemberRecommendService {
         List<MemberRecommend> memberRecommends = memberRecommendDao.getList(memberRecommend);
         return Optional.ofNullable(memberRecommends).filter(p -> p.size() >0).map(p1 -> p1.get(0)).orElse(null);
     }
+
+    @Override
+    public void deleteById(long recommendId) {
+        memberRecommendDao.deleteByPrimaryKey(recommendId);
+    }
 }

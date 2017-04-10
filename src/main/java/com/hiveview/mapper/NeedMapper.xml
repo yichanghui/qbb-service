@@ -263,6 +263,9 @@
           m.mobile
         FROM j_need n LEFT JOIN j_class c ON n.class_id = c.id
                       LEFT JOIN  j_member m on m.id = n.member_id
+                    <if test="recommendShow == true" >
+                      LEFT JOIN  j_need_recommend nr on nr.need_id = n.id
+                    </if>
         <where>
             <if test="memberId != null" >
                 n.member_id = #{memberId,jdbcType=BIGINT}
@@ -272,6 +275,9 @@
             </if>
             <if test="title != null and title != ''" >
              AND  title like CONCAT('%',#{title},'%')
+            </if>
+            <if test="recommendShow == true" >
+             AND  nr.id is null
             </if>
           AND  n.status != 2 order by n.add_time desc
         </where>

@@ -258,6 +258,9 @@
           p.real_price,
           c.name as className
         FROM j_product p LEFT JOIN j_class c ON p.class_id = c.id
+        <if test="recommendShow == true" >
+          LEFT JOIN  j_product_recommend jr on jr.product_id = p.id
+        </if>
         <where>
           <if test="title != null" >
             p.title like  CONCAT('%',#{title,jdbcType=BIGINT},'%')
@@ -267,6 +270,9 @@
           </if>
           <if test="status != null" >
            AND p.status = #{status,jdbcType=TINYINT}
+          </if>
+          <if test="recommendShow == true" >
+            AND jr.id is null
           </if>
           and p.status != 2
         </where>

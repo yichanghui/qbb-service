@@ -41,4 +41,9 @@ public class NeedRecommentServiceImpl implements INeedRecommendService {
         List<NeedRecommend> needRecommends = needRecommendDao.getList(needRecommend);
         return Optional.ofNullable(needRecommends).filter(n -> n.size()>0).map(n1 ->  n1.get(0) ).orElse(null);
     }
+
+    @Override
+    public void deleteById(long needRecommendId) {
+        needRecommendDao.deleteByPrimaryKey(needRecommendId);
+    }
 }
