@@ -23,6 +23,7 @@
     <result column="className" property="className" jdbcType="VARCHAR" />
     <result column="areaFullName" property="areaFullName" jdbcType="VARCHAR" />
     <association property="member" javaType="com.hiveview.entity.Member">
+      <result column="headPortrait" property="headPortrait" jdbcType="VARCHAR" />
       <result column="memberName" property="name" jdbcType="VARCHAR" />
       <result column="mobile" property="mobile" jdbcType="VARCHAR" />
       <result column="address" property="address" jdbcType="VARCHAR" />
