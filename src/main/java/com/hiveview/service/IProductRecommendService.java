@@ -17,4 +17,6 @@ public interface IProductRecommendService {
     void saveRecommend(ProductRecommend productRecommend);
 
     ProductRecommend getProductRecommendByPId(long productId);
+
+    void deleteById(long productId);
 }

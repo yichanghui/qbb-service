@@ -417,6 +417,9 @@
       a.full_name as areaFullName
       FROM j_member m LEFT JOIN j_company c ON m.company_id = c.id
                       LEFT JOIN  j_area a on a.code = m.area_code
+                      <if test="recommendShow == true" >
+                        LEFT JOIN  j_member_recommend mr on mr.member_id = m.id
+                      </if>
       <where>
         <if test="id != null" >
           m.id = #{id,jdbcType=BIGINT}
@@ -435,6 +438,9 @@
         </if>
         <if test="areaCode != null" >
         AND  m.area_code like CONCAT(#{areaCode},'%')
+        </if>
+        <if test="recommendShow == true" >
+          AND mr.id is null
         </if>
       </where>
   </select>

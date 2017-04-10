@@ -43,6 +43,7 @@ public  class MemberServiceImpl implements IMemberService{
 
     @Override
     public Integer saveMember(Member member) {
+        member.setType(-1);
         return memberDao.insertSelective(member);
     }
 

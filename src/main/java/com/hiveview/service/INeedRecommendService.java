@@ -10,11 +10,14 @@ import java.util.List;
 public interface INeedRecommendService {
 
 
-    List<NeedRecommend> getNeedRecommendPage(NeedRecommend productRecommend);
+    List<NeedRecommend> getNeedRecommendPage(NeedRecommend needRecommend);
 
-    void updateRecommend(NeedRecommend productRecommend);
+    void updateRecommend(NeedRecommend needRecommend);
 
-    void saveRecommend(NeedRecommend productRecommend);
+    void saveRecommend(NeedRecommend needRecommend);
 
-    NeedRecommend getNeedRecommendByNId(long productId);
+    NeedRecommend getNeedRecommendByNId(long needId);
+
+
+    void deleteById(long needRecommendId);
 }
