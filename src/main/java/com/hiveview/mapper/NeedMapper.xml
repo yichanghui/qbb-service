@@ -326,7 +326,7 @@
           <if test="classCode != null and classCode != ''" >
             AND  c.code  like  CONCAT(#{classCode},'%')
           </if>
-          <if test="memberType != null and memberType != ''" >
+          <if test="memberType != null " >
             AND  n.member_type  =  #{memberType}
           </if>
         </where>
