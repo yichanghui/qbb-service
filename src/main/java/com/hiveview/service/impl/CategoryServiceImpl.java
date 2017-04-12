@@ -5,7 +5,6 @@ import com.hiveview.dao.IClassAttributeDao;
 import com.hiveview.entity.Attribute;
 import com.hiveview.entity.Category;
 import com.hiveview.service.ICategoryService;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
