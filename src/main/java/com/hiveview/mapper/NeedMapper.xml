@@ -301,6 +301,7 @@
           n.charge_type,
           c.name as className,
           m.name as memberName,
+          m.head_portrait as headPortrait,
           m.mobile,
           m.address,
           a.full_name as areaFullName
