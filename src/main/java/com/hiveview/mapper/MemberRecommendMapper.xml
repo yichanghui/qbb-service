@@ -11,6 +11,11 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="type" property="type" jdbcType="TINYINT" />
     <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+    <result column="head_portrait" property="headPortrait"  />
+    <result column="description" property="description"  />
+    <result column="adviser_type" property="adviserType"  />
+    <result column="areaFullName" property="areaFullName"  />
+    <result column="summary" property="summary"  />
   </resultMap>
   <sql id="Base_Column_List" >
     id, member_id, plate, recommend_order, status, add_time, update_time, type, operator_id
@@ -156,7 +161,48 @@
     FROM j_member_recommend mr INNER JOIN j_member m on mr.member_id = m.id
     LEFT JOIN j_company c on c.id = m.company_id
     LEFT JOIN sys_user u on mr.operator_id = u.sys_user_id
-    WHERE m.check_status = 4 and m.status = 1
+    WHERE m.check_status = 4 and m.status = 1  and m.type = 1
+    <if test="memberName != null" >
+      AND m.name like CONCAT("%",#{memberName,jdbcType=TIMESTAMP},"%")
+    </if>
+    <if test="memberId != null" >
+      AND mr.member_id = #{memberId,jdbcType=BIGINT}
+    </if>
+    <if test="plate != null" >
+      AND mr.plate = #{plate,jdbcType=TINYINT}
+    </if>
+    <if test="recommendOrder != null" >
+      AND  mr.recommend_order = #{recommendOrder,jdbcType=INTEGER}
+    </if>
+    <if test="status != null" >
+      AND mr.status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="type != null" >
+      AND mr.type = #{type,jdbcType=TINYINT}
+    </if>
+  </select>
+  <select id="getRecommendList" resultMap="BaseResultMap" parameterType="com.hiveview.entity.MemberRecommend" >
+    SELECT
+    mr.id,
+    mr.member_id,
+    mr.plate,
+    mr.recommend_order,
+    mr.status,
+    mr.add_time,
+    mr.update_time,
+    mr.type,
+    mr.operator_id,
+    m.name as memberName,
+    c.company_name as companyName,
+    c.summary,
+    m.head_portrait,
+    m.description,
+    m.adviser_type,
+    a.full_name as areaFullName
+    FROM j_member_recommend mr INNER JOIN j_member m on mr.member_id = m.id
+                              LEFT JOIN j_company c on c.id = m.company_id
+                            LEFT JOIN  j_area a on a.code = m.area_code
+    WHERE m.check_status = 4 and m.status = 1 and m.type = 1
     <if test="memberName != null" >
       AND m.name like CONCAT("%",#{memberName,jdbcType=TIMESTAMP},"%")
     </if>

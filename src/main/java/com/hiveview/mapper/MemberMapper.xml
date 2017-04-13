@@ -458,4 +458,81 @@
       WHERE m.id = #{memberId}
   </select>
 
+
+
+  <update id="updateMemberByMobile" parameterType="com.hiveview.entity.Member" >
+    update j_member
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortrait != null" >
+        head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="workTime != null" >
+        work_time  = #{workTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="realNameAuthentication != null" >
+        real_name_authentication = #{realNameAuthentication,jdbcType=TINYINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="personalProfile != null" >
+        personal_profile = #{personalProfile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="needViewCount != null" >
+        need_view_count = #{needViewCount,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="adviserType != null" >
+        adviser_type = #{adviserType},
+      </if>
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="relateCompanyDate != null" >
+        relate_company_date = #{relateCompanyDate,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where mobile = #{mobile,jdbcType=BIGINT}
+  </update>
 </mapper>

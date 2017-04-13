@@ -47,4 +47,6 @@ public interface IMemberDao {
 
 
 	public List<Member> getList(Member t);
+
+    void updateMemberByMobile(Member member);
 }

@@ -19,4 +19,6 @@ public interface IMemberRecommendService {
     MemberRecommend getMemberRecommendByMId(long memberId);
 
     void deleteById(long recommendId);
+
+    List<MemberRecommend> getMemberRecommendList(MemberRecommend memberRecommend);
 }

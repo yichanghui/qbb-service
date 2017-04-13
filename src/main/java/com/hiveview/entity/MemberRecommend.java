@@ -27,6 +27,56 @@ public class MemberRecommend {
 
     private String userName;
 
+    private String headPortrait;
+
+    private String areaFullName;
+
+    private String description;
+
+    private String adviserType;
+
+    private String summary;
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
+    }
+
+    public String getAreaFullName() {
+        return areaFullName;
+    }
+
+    public void setAreaFullName(String areaFullName) {
+        this.areaFullName = areaFullName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAdviserType() {
+        return adviserType;
+    }
+
+    public void setAdviserType(String adviserType) {
+        this.adviserType = adviserType;
+    }
+
     public String getMemberName() {
         return memberName;
     }

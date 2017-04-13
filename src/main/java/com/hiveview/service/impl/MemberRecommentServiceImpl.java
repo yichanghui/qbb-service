@@ -46,4 +46,9 @@ public class MemberRecommentServiceImpl implements IMemberRecommendService {
     public void deleteById(long recommendId) {
         memberRecommendDao.deleteByPrimaryKey(recommendId);
     }
+
+    @Override
+    public List<MemberRecommend> getMemberRecommendList(MemberRecommend memberRecommend) {
+        return memberRecommendDao.getRecommendList(memberRecommend);
+    }
 }

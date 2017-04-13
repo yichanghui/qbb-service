@@ -2,6 +2,8 @@ package com.hiveview.dao;
 
 import com.hiveview.entity.MemberRecommend;
 
+import java.util.List;
+
 public interface IMemberRecommendDao extends IBaseDao<MemberRecommend>{
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface IMemberRecommendDao extends IBaseDao<MemberRecommend>{
     int updateByPrimaryKeySelective(MemberRecommend record);
 
     int updateByPrimaryKey(MemberRecommend record);
+
+    List<MemberRecommend> getRecommendList(MemberRecommend memberRecommend);
 }

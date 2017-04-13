@@ -85,4 +85,9 @@ public  class MemberServiceImpl implements IMemberService{
         return memberDao.getList(member);
     }
 
+    @Override
+    public void updateMemberByMobile(Member member) {
+        memberDao.updateMemberByMobile(member);
+    }
+
 }
