@@ -23,6 +23,8 @@ public interface ICategoryService {
      */
     List<Category> getSonCategory(long parentId);
 
+    List<Category> getListByCode(String code);
+
     Category getCategoryById(Long classId);
 
     /**

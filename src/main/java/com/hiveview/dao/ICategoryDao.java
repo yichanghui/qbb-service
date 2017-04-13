@@ -19,6 +19,9 @@ public interface ICategoryDao extends  IBaseDao<Category>{
 
     List<Category> getSonCategory(long parentId);
 
+    /* 只查少部分内容 */
+    List<Category> getListByCode(String code);
+
     int deleteCategoryByCode(String code);
 
     int batchDelete(List<Long> ids);

@@ -105,4 +105,8 @@ public class CategoryServiceImpl implements ICategoryService {
         categoryDao.updateByPrimaryKeySelective(category);
     }
 
+    @Override
+    public List<Category> getListByCode(String code) {
+        return categoryDao.getListByCode(code);
+    }
 }
