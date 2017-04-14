@@ -21,4 +21,6 @@ public interface IProductService {
     List<Product> getOpendProductPage(Product product);
 
     Product getProductDetail(long productId);
+
+    List<Product> getProductIntroduce(Product product);
 }

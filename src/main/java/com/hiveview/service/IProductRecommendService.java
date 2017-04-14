@@ -19,4 +19,6 @@ public interface IProductRecommendService {
     ProductRecommend getProductRecommendByPId(long productId);
 
     void deleteById(long productId);
+
+    List<ProductRecommend> getHotProduct(ProductRecommend productRecommend);
 }

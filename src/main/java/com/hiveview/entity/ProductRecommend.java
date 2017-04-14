@@ -27,6 +27,66 @@ public class ProductRecommend {
 
     private String userName;
 
+    private String realPrice;
+
+    private String summary;
+
+    private int workAge;
+
+    private String adviserType;
+
+    private String classCode;
+
+    private String memberName;
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public String getClassCode() {
+        return classCode;
+    }
+
+    public void setClassCode(String classCode) {
+        this.classCode = classCode;
+    }
+
+    public String getRealPrice() {
+        return realPrice;
+    }
+
+    public void setRealPrice(String realPrice) {
+        this.realPrice = realPrice;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public int getWorkAge() {
+        return workAge;
+    }
+
+    public void setWorkAge(int workAge) {
+        this.workAge = workAge;
+    }
+
+    public String getAdviserType() {
+        return adviserType;
+    }
+
+    public void setAdviserType(String adviserType) {
+        this.adviserType = adviserType;
+    }
+
     public String getUserName() {
         return userName;
     }

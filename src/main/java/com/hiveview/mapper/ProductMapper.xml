@@ -28,6 +28,10 @@
       <result column="mobile" property="mobile" jdbcType="VARCHAR" />
       <result column="address" property="address" jdbcType="VARCHAR" />
       <result column="adviser_type" property="adviserType"/>
+      <result column="qq" property="qq"/>
+      <result column="workAge" property="workAge"/>
+      <result column="logo" property="logo"/>
+      <result column="companyName" property="companyName"/>
     </association>
   </resultMap>
   <sql id="Base_Column_List" >
@@ -325,6 +329,57 @@
             </if>
           </where>
       order by 	p.weight_value DESC,p.recommend DESC
-
+    </select>
+    <select id="getProductIntroduce" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Product" >
+        SELECT
+          p.id,
+          p.title,
+          p.picture,
+          p.class_id,
+          p.content,
+          p.member_id,
+          p.company_id,
+          p.status,
+          p.hits,
+          p.add_time,
+          p.update_time,
+          p.type,
+          p.attribute,
+          p.keywords,
+          p.market_price,
+          p.real_price,
+          c.name as className,
+          m.name as memberName,
+          m.head_portrait,
+          m.qq,
+          date_format(now(), '%Y') - date_format(m.work_time, '%Y') AS workAge,
+          cm.logo,
+          cm.company_name as companyName,
+          m.adviser_type
+        FROM j_product p LEFT JOIN j_class c ON p.class_id = c.id
+                         LEFT JOIN  j_member m on p.member_id = m.id
+                         LEFT JOIN j_area a on a.code = m.area_code
+                         LEFT JOIN j_company cm on cm.id = m.company_id
+          <where>
+            <if test="memberId != null" >
+              p.member_id = #{memberId,jdbcType=BIGINT}
+            </if>
+            <if test="status != null" >
+              AND  p.status = #{status,jdbcType=TINYINT}
+            </if>
+            <if test="title != null and title != ''" >
+              AND  p.title like CONCAT('%',#{title},'%')
+            </if>
+            <if test="id != null and id != ''" >
+              AND  p.id =  #{id}
+            </if>
+            <if test="areaCode != null and areaCode != ''" >
+              AND  m.area_code like  CONCAT(#{areaCode},'%')
+            </if>
+            <if test="classCode != null and classCode != ''" >
+              AND  c.code  like  CONCAT(#{classCode},'%')
+            </if>
+          </where>
+      order by 	p.weight_value DESC,p.recommend DESC
     </select>
 </mapper>

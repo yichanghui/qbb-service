@@ -54,4 +54,9 @@ public class ProductServiceImpl implements IProductService {
         }
         return product;
     }
+
+    @Override
+    public List<Product> getProductIntroduce(Product product) {
+        return productDao.getProductIntroduce(product);
+    }
 }

@@ -42,4 +42,9 @@ public class IArticleImpl implements IArticleService {
     public void addPageView(long articleId) {
         articleDao.addPageView(articleId);
     }
+
+    @Override
+    public List<Article> getRecommendList(Article article) {
+        return articleDao.getRecommendList(article);
+    }
 }

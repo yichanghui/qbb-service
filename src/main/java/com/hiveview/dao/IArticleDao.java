@@ -2,6 +2,8 @@ package com.hiveview.dao;
 
 import com.hiveview.entity.Article;
 
+import java.util.List;
+
 public interface IArticleDao extends IBaseDao<Article>{
     int deleteByPrimaryKey(Long id);
 
@@ -18,4 +20,6 @@ public interface IArticleDao extends IBaseDao<Article>{
     int updateByPrimaryKey(Article record);
 
     void addPageView(long articleId);
+
+    List<Article> getRecommendList(Article article);
 }

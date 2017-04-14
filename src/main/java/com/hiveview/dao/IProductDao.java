@@ -20,4 +20,6 @@ public interface IProductDao extends IBaseDao<Product>{
     List<Product> getProductPage(Product product);
 
     List<Product> getOpendProduct(Product product);
+
+    List<Product> getProductIntroduce(Product product);
 }

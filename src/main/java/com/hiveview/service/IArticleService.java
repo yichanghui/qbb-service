@@ -23,4 +23,6 @@ public interface IArticleService {
      * @param articleId
      */
     void addPageView(long articleId);
+
+    List<Article> getRecommendList(Article article);
 }

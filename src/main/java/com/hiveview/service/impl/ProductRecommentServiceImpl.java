@@ -46,4 +46,9 @@ public class ProductRecommentServiceImpl implements IProductRecommendService {
     public void deleteById(long productId) {
         productRecommendDao.deleteByPrimaryKey(productId);
     }
+
+    @Override
+    public List<ProductRecommend> getHotProduct(ProductRecommend productRecommend) {
+        return productRecommendDao.getHotProduct(productRecommend);
+    }
 }

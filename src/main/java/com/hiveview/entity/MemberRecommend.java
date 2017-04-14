@@ -37,6 +37,36 @@ public class MemberRecommend {
 
     private String summary;
 
+    private String logo;
+
+    private String qq;
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    private int workAge;
+
+    public int getWorkAge() {
+        return workAge;
+    }
+
+    public void setWorkAge(int workAge) {
+        this.workAge = workAge;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
     public String getSummary() {
         return summary;
     }

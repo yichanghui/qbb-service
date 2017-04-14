@@ -16,6 +16,9 @@
     <result column="adviser_type" property="adviserType"  />
     <result column="areaFullName" property="areaFullName"  />
     <result column="summary" property="summary"  />
+    <result column="logo" property="logo"  />
+    <result column="workAge" property="workAge"  />
+    <result column="qq" property="qq"  />
   </resultMap>
   <sql id="Base_Column_List" >
     id, member_id, plate, recommend_order, status, add_time, update_time, type, operator_id
@@ -192,12 +195,15 @@
     mr.update_time,
     mr.type,
     mr.operator_id,
-    m.name as memberName,
     c.company_name as companyName,
     c.summary,
+    c.logo,
+    m.name as memberName,
     m.head_portrait,
     m.description,
     m.adviser_type,
+    m.qq,
+    date_format(now(), '%Y') - date_format(m.work_time, '%Y') AS workAge,
     a.full_name as areaFullName
     FROM j_member_recommend mr INNER JOIN j_member m on mr.member_id = m.id
                               LEFT JOIN j_company c on c.id = m.company_id
@@ -220,6 +226,9 @@
     </if>
     <if test="type != null" >
       AND mr.type = #{type,jdbcType=TINYINT}
+    </if>
+    <if test="adviserType != null" >
+      AND  m.adviser_type like CONCAT(#{adviserType},'%')
     </if>
   </select>
 </mapper>

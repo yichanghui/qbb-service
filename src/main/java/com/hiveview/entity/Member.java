@@ -66,6 +66,16 @@ public class Member {
 
 	private String areaFullName;
 
+	private String logo;
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
 	private boolean recommendShow = false;//推荐的顾问展示
 
 	public boolean isRecommendShow() {

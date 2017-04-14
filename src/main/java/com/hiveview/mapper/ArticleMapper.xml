@@ -12,6 +12,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.hiveview.entity.Article" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
@@ -158,7 +159,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="getList" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Article" >
+  <select id="getList" resultMap="ResultMapWithBLOBs" parameterType="com.hiveview.entity.Article" >
         SELECT
         a.id,
         a.title,
@@ -168,10 +169,46 @@
         a.page_view,
         a.operator_id,
         a.update_time,
+        a.content,
+        a.picture,
         u.user_name
 --     ,c.name as categoryName
         FROM j_article a LEFT JOIN sys_user u on a.operator_id = u.sys_user_id
 --         LEFT JOIN j_class c on c.id = a.class_id
+      <where>
+        <if test="title != null" >
+          a.title like  CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="classId != null" >
+          AND a.class_id = #{classId,jdbcType=BIGINT}
+        </if>
+        <if test="status != null" >
+          AND  a.status = #{status,jdbcType=TINYINT}
+        </if>
+        <if test="addTime != null" >
+          AND a.add_time = #{addTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="pageView != null" >
+          AND  a.page_view = #{pageView,jdbcType=INTEGER}
+        </if>
+        <if test="operatorId != null" >
+          AND  a.operator_id = #{operatorId,jdbcType=INTEGER}
+        </if>
+      </where>
+  </select>
+  <select id="getRecommendList" resultMap="ResultMapWithBLOBs" parameterType="com.hiveview.entity.Article" >
+        SELECT
+        a.id,
+        a.title,
+        a.class_id,
+        a.status,
+        a.add_time,
+        a.page_view,
+        a.operator_id,
+        a.update_time,
+        a.content,
+        a.picture
+        FROM j_article a
       <where>
         <if test="title != null" >
           a.title like  CONCAT('%',#{title,jdbcType=VARCHAR},'%')

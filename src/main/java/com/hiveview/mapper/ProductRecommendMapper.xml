@@ -14,6 +14,11 @@
     <result column="productName" property="productName" jdbcType="VARCHAR" />
     <result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
     <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="real_price" property="realPrice"  />
+    <result column="summary" property="summary" />
+    <result column="workAge" property="workAge"/>
+    <result column="adviser_type" property="adviserType"/>
+    <result column="memberName" property="memberName"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, product_id, plate, recommend_order, status, add_time, update_time, type, operator_id
@@ -162,6 +167,51 @@
     WHERE p.status = 4
     <if test="productName != null" >
       AND p.title like CONCAT("%",#{productName,jdbcType=TIMESTAMP},"%")
+    </if>
+    <if test="productId != null" >
+      AND pr.product_id = #{productId,jdbcType=BIGINT}
+    </if>
+    <if test="plate != null" >
+      AND pr.plate = #{plate,jdbcType=TINYINT}
+    </if>
+    <if test="recommendOrder != null" >
+      AND  pr.recommend_order = #{recommendOrder,jdbcType=INTEGER}
+    </if>
+    <if test="status != null" >
+      AND pr.status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="type != null" >
+      AND pr.type = #{type,jdbcType=TINYINT}
+    </if>
+  </select>
+
+  <select id="getHotProduct" resultMap="BaseResultMap" parameterType="com.hiveview.entity.ProductRecommend" >
+    SELECT
+    pr.id,
+    pr.product_id,
+    pr.plate,
+    pr.recommend_order,
+    pr.status,
+    pr.add_time,
+    pr.update_time,
+    pr.type,
+    pr.operator_id,
+    p.title as productName,
+    p.real_price,
+    p.market_price,
+    p.summary,
+    date_format(now(), '%Y') - date_format(m.work_time, '%Y') AS workAge,
+    m.adviser_type,
+    m.name as memberName
+    FROM j_product_recommend pr INNER JOIN j_product p on pr.product_id = p.id
+                              LEFT JOIN j_class c on c.id = p.class_id
+                              LEFT JOIN  j_member m on p.member_id = m.id
+    WHERE p.status = 4
+    <if test="productName != null" >
+      AND p.title like CONCAT("%",#{productName,jdbcType=TIMESTAMP},"%")
+    </if>
+    <if test="classCode != null and classCode != ''" >
+      AND  c.code  like  CONCAT(#{classCode},'%')
     </if>
     <if test="productId != null" >
       AND pr.product_id = #{productId,jdbcType=BIGINT}
