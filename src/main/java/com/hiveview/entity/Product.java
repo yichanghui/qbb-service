@@ -48,6 +48,16 @@ public class Product {
 
     private Integer recommend;
 
+    private String summary;
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     private boolean recommendShow = false;//推荐展示
 
     public boolean isRecommendShow() {

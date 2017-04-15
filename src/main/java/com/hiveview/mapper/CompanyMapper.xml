@@ -27,10 +27,10 @@
   <insert id="insert" parameterType="com.hiveview.entity.Company" useGeneratedKeys="true" keyProperty="id" >
     insert into j_company (company_name, add_time,
       type_link_id, address, introduce, 
-      update_time, code)
+      update_time, code,logo,summary)
     values (#{companyName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
       #{typeLinkId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR})
+      #{updateTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hiveview.entity.Company" >
     insert into j_company

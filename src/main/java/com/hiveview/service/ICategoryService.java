@@ -56,4 +56,6 @@ public interface ICategoryService {
     void updateCategoryAndAttr(Category category);
 
     void saveCategory(Category category);
+
+    Category getCategoryByCode(String classCode);
 }

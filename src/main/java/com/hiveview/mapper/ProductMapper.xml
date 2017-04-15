@@ -21,6 +21,7 @@
     <result column="className" property="className" jdbcType="VARCHAR" />
     <result column="weight_value" property="weightValue" jdbcType="INTEGER" />
     <result column="recommend" property="recommend" jdbcType="INTEGER" />
+    <result column="summary" property="summary"  />
     <association property="member" javaType="com.hiveview.entity.Member">
       <result column="memberName" property="name" jdbcType="VARCHAR" />
       <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR" />
@@ -36,7 +37,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, title, picture, class_id, content, member_id, company_id, status, hits, add_time, 
-    update_time, type, attribute, keywords, market_price, real_price,weight_value,recommend
+    update_time, type, attribute, keywords, market_price, real_price,weight_value,recommend,summary
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -70,6 +71,9 @@
       </if>
       <if test="title != null" >
         title,
+      </if>
+      <if test="summary != null" >
+        summary,
       </if>
       <if test="picture != null" >
         picture,
@@ -121,6 +125,9 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
       <if test="picture != null" >
         #{picture,jdbcType=VARCHAR},
       </if>
@@ -170,6 +177,9 @@
     <set >
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
       </if>
       <if test="picture != null" >
         picture = #{picture,jdbcType=VARCHAR},
@@ -260,6 +270,7 @@
           p.keywords,
           p.market_price,
           p.real_price,
+          p.summary,
           c.name as className
         FROM j_product p LEFT JOIN j_class c ON p.class_id = c.id
         <if test="recommendShow == true" >
@@ -300,6 +311,7 @@
           p.keywords,
           p.market_price,
           p.real_price,
+          p.summary,
           c.name as className,
           m.name as memberName,
           m.head_portrait,
@@ -348,6 +360,7 @@
           p.keywords,
           p.market_price,
           p.real_price,
+          p.summary,
           c.name as className,
           m.name as memberName,
           m.head_portrait,

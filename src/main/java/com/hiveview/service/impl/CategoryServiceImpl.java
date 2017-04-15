@@ -106,6 +106,13 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
+    public Category getCategoryByCode(String classCode) {
+        Category category = new Category();
+        category.setCode(classCode);
+        return categoryDao.get(category);
+    }
+
+    @Override
     public List<Category> getListByCode(String code) {
         return categoryDao.getListByCode(code);
     }

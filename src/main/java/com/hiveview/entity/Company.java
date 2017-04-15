@@ -7,6 +7,10 @@ public class Company {
 
     private String companyName;
 
+    private String logo;
+
+    private String summary;
+
     private Date addTime;
 
     private Long typeLinkId;
@@ -18,6 +22,22 @@ public class Company {
     private Date updateTime;
 
     private String code;
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
     public Long getId() {
         return id;
