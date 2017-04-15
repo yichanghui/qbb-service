@@ -34,6 +34,16 @@ public class Category {
 
     private String parentId;
 
+    private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public String getParentId() {
         return parentId;
     }

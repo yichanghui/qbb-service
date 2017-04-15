@@ -11,6 +11,7 @@
     <result column="status" property="status" jdbcType="TINYINT" />
     <result column="attribute" property="attribute" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="content" property="content"  />
     <collection property="attributes" ofType="com.hiveview.entity.Attribute">
       <result column="classId" property="classId" jdbcType="BIGINT" />
       <result column="attrName" property="name" jdbcType="VARCHAR" />
@@ -29,7 +30,7 @@
 
   <sql id="Base_Column_List" >
     id, name, full_name, level, add_time, type, status,
-    attribute,code
+    attribute,code,content
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -78,7 +79,10 @@
       <if test="attribute != null" >
         attribute,
       </if>
-      <if test="parentId != null" >
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="parentId != null and parentId != ''" >
         parent_id
       </if>
     </trim>
@@ -108,7 +112,10 @@
       <if test="attribute != null" >
         #{attribute,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null" >
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null and parentId != ''" >
         #{parentId,jdbcType=VARCHAR},
       </if>
     </trim>
