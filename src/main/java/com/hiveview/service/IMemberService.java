@@ -47,5 +47,7 @@ public interface IMemberService {
     List<Member> getMemberList(Member member);
 
     void updateMemberByMobile(Member member);
+
+	Member getMemberByMobile(String mobile);
 }
 

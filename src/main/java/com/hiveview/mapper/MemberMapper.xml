@@ -69,7 +69,7 @@
       #{companyId,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{personalProfile,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.hiveview.entity.Member" >
+  <insert id="insertSelective" parameterType="com.hiveview.entity.Member" useGeneratedKeys="true" keyProperty="id" >
     insert into j_member
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

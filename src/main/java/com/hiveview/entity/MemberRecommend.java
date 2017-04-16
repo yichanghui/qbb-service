@@ -41,6 +41,16 @@ public class MemberRecommend {
 
     private String qq;
 
+    private Integer level;
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
     public String getQq() {
         return qq;
     }

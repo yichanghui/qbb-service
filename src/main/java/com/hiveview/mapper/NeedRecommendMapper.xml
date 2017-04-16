@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.hiveview.entity.NeedRecommend" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="need_id" property="needId" jdbcType="BIGINT" />
-    <result column="plate" property="plate" jdbcType="TINYINT" />
+    <result column="plate" property="plate" />
     <result column="recommend_order" property="recommendOrder" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="status" property="status" />
     <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type" property="type" />
     <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -30,9 +30,9 @@
       recommend_order, status, add_time, 
       update_time, type, operator_id
       )
-    values (#{id,jdbcType=BIGINT}, #{needId,jdbcType=BIGINT}, #{plate,jdbcType=TINYINT}, 
-      #{recommendOrder,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT}, #{operatorId,jdbcType=INTEGER}
+    values (#{id,jdbcType=BIGINT}, #{needId,jdbcType=BIGINT}, #{plate}, 
+      #{recommendOrder,jdbcType=INTEGER}, #{status}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{type}, #{operatorId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hiveview.entity.NeedRecommend" >
@@ -74,13 +74,13 @@
         #{needId,jdbcType=BIGINT},
       </if>
       <if test="plate != null" >
-        #{plate,jdbcType=TINYINT},
+        #{plate},
       </if>
       <if test="recommendOrder != null" >
         #{recommendOrder,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=TINYINT},
+        #{status},
       </if>
       <if test="addTime != null" >
         #{addTime,jdbcType=TIMESTAMP},
@@ -89,7 +89,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=TINYINT},
+        #{type},
       </if>
       <if test="operatorId != null" >
         #{operatorId,jdbcType=INTEGER},
@@ -103,13 +103,13 @@
         need_id = #{needId,jdbcType=BIGINT},
       </if>
       <if test="plate != null" >
-        plate = #{plate,jdbcType=TINYINT},
+        plate = #{plate},
       </if>
       <if test="recommendOrder != null" >
         recommend_order = #{recommendOrder,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=TINYINT},
+        status = #{status},
       </if>
       <if test="addTime != null" >
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -118,7 +118,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=TINYINT},
+        type = #{type},
       </if>
       <if test="operatorId != null" >
         operator_id = #{operatorId,jdbcType=INTEGER},
@@ -129,12 +129,12 @@
   <update id="updateByPrimaryKey" parameterType="com.hiveview.entity.NeedRecommend" >
     update j_need_recommend
     set need_id = #{needId,jdbcType=BIGINT},
-      plate = #{plate,jdbcType=TINYINT},
+      plate = #{plate},
       recommend_order = #{recommendOrder,jdbcType=INTEGER},
-      status = #{status,jdbcType=TINYINT},
+      status = #{status},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      type = #{type,jdbcType=TINYINT},
+      type = #{type},
       operator_id = #{operatorId,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -163,16 +163,16 @@
       AND nr.need_id = #{needId,jdbcType=BIGINT}
     </if>
     <if test="plate != null" >
-      AND nr.plate = #{plate,jdbcType=TINYINT}
+      AND nr.plate = #{plate}
     </if>
     <if test="recommendOrder != null" >
       AND  nr.recommend_order = #{recommendOrder,jdbcType=INTEGER}
     </if>
     <if test="status != null" >
-      AND nr.status = #{status,jdbcType=TINYINT}
+      AND nr.status = #{status}
     </if>
     <if test="type != null" >
-      AND nr.type = #{type,jdbcType=TINYINT}
+      AND nr.type = #{type}
     </if>
   </select>
 </mapper>

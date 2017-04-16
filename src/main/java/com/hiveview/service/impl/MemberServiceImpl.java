@@ -90,4 +90,10 @@ public  class MemberServiceImpl implements IMemberService{
         memberDao.updateMemberByMobile(member);
     }
 
+    @Override
+    public Member getMemberByMobile(String mobile) {
+        Member member = new Member();
+        member.setMobile(mobile);
+        return memberDao.get(member);
+    }
 }

@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.hiveview.entity.MemberRecommend" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="member_id" property="memberId" jdbcType="BIGINT" />
-    <result column="plate" property="plate" jdbcType="TINYINT" />
+    <result column="plate" property="plate"  />
     <result column="recommend_order" property="recommendOrder" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="status" property="status"  />
     <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type" property="type"  />
     <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
     <result column="head_portrait" property="headPortrait"  />
     <result column="description" property="description"  />
@@ -19,6 +19,7 @@
     <result column="logo" property="logo"  />
     <result column="workAge" property="workAge"  />
     <result column="qq" property="qq"  />
+    <result column="level" property="level"  />
   </resultMap>
   <sql id="Base_Column_List" >
     id, member_id, plate, recommend_order, status, add_time, update_time, type, operator_id
@@ -38,9 +39,9 @@
       recommend_order, status, add_time, 
       update_time, type, operator_id
       )
-    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{plate,jdbcType=TINYINT}, 
-      #{recommendOrder,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{type,jdbcType=TINYINT}, #{operatorId,jdbcType=INTEGER}
+    values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{plate}, 
+      #{recommendOrder,jdbcType=INTEGER}, #{status}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{type}, #{operatorId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hiveview.entity.MemberRecommend" >
@@ -82,13 +83,13 @@
         #{memberId,jdbcType=BIGINT},
       </if>
       <if test="plate != null" >
-        #{plate,jdbcType=TINYINT},
+        #{plate},
       </if>
       <if test="recommendOrder != null" >
         #{recommendOrder,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=TINYINT},
+        #{status},
       </if>
       <if test="addTime != null" >
         #{addTime,jdbcType=TIMESTAMP},
@@ -97,7 +98,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=TINYINT},
+        #{type},
       </if>
       <if test="operatorId != null" >
         #{operatorId,jdbcType=INTEGER},
@@ -111,13 +112,13 @@
         member_id = #{memberId,jdbcType=BIGINT},
       </if>
       <if test="plate != null" >
-        plate = #{plate,jdbcType=TINYINT},
+        plate = #{plate},
       </if>
       <if test="recommendOrder != null" >
         recommend_order = #{recommendOrder,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=TINYINT},
+        status = #{status},
       </if>
       <if test="addTime != null" >
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -126,7 +127,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=TINYINT},
+        type = #{type},
       </if>
       <if test="operatorId != null" >
         operator_id = #{operatorId,jdbcType=INTEGER},
@@ -137,12 +138,12 @@
   <update id="updateByPrimaryKey" parameterType="com.hiveview.entity.MemberRecommend" >
     update j_member_recommend
     set member_id = #{memberId,jdbcType=BIGINT},
-      plate = #{plate,jdbcType=TINYINT},
+      plate = #{plate},
       recommend_order = #{recommendOrder,jdbcType=INTEGER},
-      status = #{status,jdbcType=TINYINT},
+      status = #{status},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      type = #{type,jdbcType=TINYINT},
+      type = #{type},
       operator_id = #{operatorId,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -172,16 +173,16 @@
       AND mr.member_id = #{memberId,jdbcType=BIGINT}
     </if>
     <if test="plate != null" >
-      AND mr.plate = #{plate,jdbcType=TINYINT}
+      AND mr.plate = #{plate}
     </if>
     <if test="recommendOrder != null" >
       AND  mr.recommend_order = #{recommendOrder,jdbcType=INTEGER}
     </if>
     <if test="status != null" >
-      AND mr.status = #{status,jdbcType=TINYINT}
+      AND mr.status = #{status}
     </if>
     <if test="type != null" >
-      AND mr.type = #{type,jdbcType=TINYINT}
+      AND mr.type = #{type}
     </if>
   </select>
   <select id="getRecommendList" resultMap="BaseResultMap" parameterType="com.hiveview.entity.MemberRecommend" >
@@ -203,6 +204,7 @@
     m.description,
     m.adviser_type,
     m.qq,
+    m.level,
     date_format(now(), '%Y') - date_format(m.work_time, '%Y') AS workAge,
     a.full_name as areaFullName
     FROM j_member_recommend mr INNER JOIN j_member m on mr.member_id = m.id
@@ -216,16 +218,16 @@
       AND mr.member_id = #{memberId,jdbcType=BIGINT}
     </if>
     <if test="plate != null" >
-      AND mr.plate = #{plate,jdbcType=TINYINT}
+      AND (mr.plate = #{plate} OR  mr.plate = 1)
     </if>
     <if test="recommendOrder != null" >
       AND  mr.recommend_order = #{recommendOrder,jdbcType=INTEGER}
     </if>
     <if test="status != null" >
-      AND mr.status = #{status,jdbcType=TINYINT}
+      AND mr.status = #{status}
     </if>
     <if test="type != null" >
-      AND mr.type = #{type,jdbcType=TINYINT}
+      AND mr.type = #{type}
     </if>
     <if test="adviserType != null" >
       AND  m.adviser_type like CONCAT(#{adviserType},'%')
