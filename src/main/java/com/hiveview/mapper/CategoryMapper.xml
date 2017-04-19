@@ -219,7 +219,7 @@
       <if test="code != null" >
         AND  code like  CONCAT(#{code},'%')
       </if>
-      AND  status != 2
+      AND  status != 2 ORDER BY code ASC
     </where>
   </select>
   <select id="getCategoryAndAttr" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Category" >
