@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by hxq on 2017/3/2.
@@ -95,5 +96,18 @@ public  class MemberServiceImpl implements IMemberService{
         Member member = new Member();
         member.setMobile(mobile);
         return memberDao.get(member);
+    }
+
+    @Override
+    public String getInviteCodeById(long memberId) {
+        Member member = new Member();
+        member.setId(memberId);
+        member = memberDao.get(member);
+        return Optional.ofNullable(member).map(m -> m.getInviteCode()).orElse("");
+    }
+
+    @Override
+    public void addNeedViewCountByInviteCode(String otherInviteCode, int count) {
+        memberDao.addNeedViewCountByInviteCode(otherInviteCode,count);
     }
 }

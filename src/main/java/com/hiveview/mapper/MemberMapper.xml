@@ -29,6 +29,7 @@
     <result column="adviser_type" property="adviserType" />
     <result column="relate_company_date" property="relateCompanyDate" jdbcType="TIMESTAMP" />
     <result column="areaFullName" property="areaFullName" jdbcType="VARCHAR" />
+    <result column="invite_code" property="inviteCode" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.hiveview.entity.Member" extends="BaseResultMap" >
     <result column="personal_profile" property="personalProfile" jdbcType="LONGVARCHAR" />
@@ -36,7 +37,7 @@
   <sql id="Base_Column_List" >
     id, name, head_portrait,nation, sex, level, work_time, password, description, mobile, qq,email,
     check_status, add_time, update_time, status, real_name_authentication, company_id, address,
-    type,need_view_count,area_code,adviser_type
+    type,need_view_count,area_code,adviser_type,invite_code
   </sql>
   <sql id="Blob_Column_List" >
     personal_profile
@@ -126,6 +127,9 @@
       <if test="personalProfile != null" >
         personal_profile,
       </if>
+      <if test="inviteCode != null" >
+        invite_code
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -181,6 +185,9 @@
       </if>
       <if test="personalProfile != null" >
         #{personalProfile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="inviteCode != null" >
+        #{inviteCode,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -537,5 +544,9 @@
       </if>
     </set>
     where mobile = #{mobile,jdbcType=BIGINT}
+  </update>
+
+  <update id="addNeedViewCountByInviteCode" >
+    UPDATE j_member SET need_view_count = need_view_count + #{count} WHERE invite_code = #{inviteCode}
   </update>
 </mapper>

@@ -49,5 +49,19 @@ public interface IMemberService {
     void updateMemberByMobile(Member member);
 
 	Member getMemberByMobile(String mobile);
+
+	/**
+	 * 获得邀请码
+	 * @param memberId
+	 * @return
+	 */
+	String getInviteCodeById(long memberId);
+
+	/**
+	 * 添加需求查看数通过 邀请码
+	 * @param otherInviteCode
+	 * @param i
+	 */
+	void addNeedViewCountByInviteCode(String otherInviteCode, int count);
 }
 
