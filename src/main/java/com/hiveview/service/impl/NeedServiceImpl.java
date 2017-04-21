@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -112,5 +113,10 @@ public class NeedServiceImpl implements INeedService {
     @Override
     public int addUserNeed(UserNeed userNeed) {
         return needDao.insertUserNeed(userNeed);
+    }
+
+    @Override
+    public List<Map<String,Object>> getLiuYanList(Map<String,Object> map) {
+        return needDao.getLiuYanList(map);
     }
 }

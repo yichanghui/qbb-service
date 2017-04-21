@@ -410,4 +410,15 @@
   </select>
   <!--用户自定义需求 end-->
 
+
+  <select id="getLiuYanList" parameterType="map" resultType="java.util.HashMap">
+  SELECT * FROM
+  (SELECT
+    id,need_desc AS needDesc,mobile AS mobile,is_contact AS isContact,add_time AS addTime,
+    (SELECT full_name FROM j_class WHERE code = jn.category_code) AS cName
+    FROM j_user_need jn
+    GROUP BY add_time DESC) temp
+
+  </select>
+
 </mapper>

@@ -5,6 +5,7 @@ import com.hiveview.entity.UserNeed;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface INeedDao extends IBaseDao<Need>{
     int deleteByPrimaryKey(Long id);
@@ -31,6 +32,13 @@ public interface INeedDao extends IBaseDao<Need>{
         用户需要部分
      */
     List<UserNeed> getUserNeed(UserNeed userNeed);
+
+    /**
+     * 用户留言
+     * @return
+     */
+    List<Map<String,Object>> getLiuYanList(Map<String,Object> map);
+
     int updateUserNeedByPrimaryKey(UserNeed userNeed);
     int insertUserNeed(UserNeed userNeed);
 }

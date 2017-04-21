@@ -5,6 +5,7 @@ import com.hiveview.entity.Need;
 import com.hiveview.entity.UserNeed;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hxq on 2017/3/13.
@@ -74,5 +75,7 @@ public interface INeedService {
     List<UserNeed> getUserNeed(UserNeed userNeed);
     int updateUserNeedByPrimaryKey(UserNeed userNeed);
     int addUserNeed(UserNeed userNeed);
+    public List<Map<String,Object>> getLiuYanList(Map<String,Object> map);
     /**用户从前台发布的需求（类似帮我找）end **/
+
 }
