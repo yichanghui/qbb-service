@@ -41,4 +41,5 @@ public interface INeedDao extends IBaseDao<Need>{
 
     int updateUserNeedByPrimaryKey(UserNeed userNeed);
     int insertUserNeed(UserNeed userNeed);
+    int deleteUserNeedByIds(List<Integer> ids);
 }
