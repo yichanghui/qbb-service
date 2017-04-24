@@ -119,4 +119,9 @@ public class NeedServiceImpl implements INeedService {
     public List<Map<String,Object>> getLiuYanList(Map<String,Object> map) {
         return needDao.getLiuYanList(map);
     }
+    @Override
+    public int deleteUserNeedByIds(List<Integer> ids){
+        needDao.deleteUserNeedByIds(ids);
+        return 1;
+    }
 }

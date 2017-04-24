@@ -408,17 +408,21 @@
     </where>
     ORDER BY add_time DESC
   </select>
-  <!--用户自定义需求 end-->
-
-
   <select id="getLiuYanList" parameterType="map" resultType="java.util.HashMap">
-  SELECT * FROM
-  (SELECT
+    SELECT * FROM
+    (SELECT
     id,need_desc AS needDesc,mobile AS mobile,is_contact AS isContact,add_time AS addTime,
     (SELECT full_name FROM j_class WHERE code = jn.category_code) AS cName
     FROM j_user_need jn
     GROUP BY add_time DESC) temp
 
   </select>
+  <delete id="deleteUserNeedByIds">
+    DELETE FROM j_user_need WHERE id IN
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <!--用户自定义需求 end-->
 
 </mapper>

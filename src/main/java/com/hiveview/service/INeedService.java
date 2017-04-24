@@ -76,6 +76,7 @@ public interface INeedService {
     int updateUserNeedByPrimaryKey(UserNeed userNeed);
     int addUserNeed(UserNeed userNeed);
     public List<Map<String,Object>> getLiuYanList(Map<String,Object> map);
+    public int deleteUserNeedByIds(List<Integer> ids);
     /**用户从前台发布的需求（类似帮我找）end **/
 
 }
