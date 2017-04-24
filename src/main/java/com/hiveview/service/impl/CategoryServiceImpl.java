@@ -80,13 +80,16 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public void updateCategoryAndAttr(Category category) {
-        categoryDao.updateByPrimaryKeySelective(category);
+//        categoryDao.updateByPrimaryKeySelective(category);
         List<Attribute> attrs = category.getAttributes();
-        if (CollectionUtils.isNotEmpty(attrs)) {
-            List<Attribute> isNoNullData = attrs.stream().filter(attribute -> StringUtils.isNotEmpty(attribute.getName())).collect(Collectors.toList());
-            if (CollectionUtils.isNotEmpty(isNoNullData)) {
-                classAttributeDao.deleteByClassId(isNoNullData.get(0).getClassId());
-                classAttributeDao.batchSaveAttr(isNoNullData);
+        Long categoryId = category.getId();
+        if (categoryId != null) {
+            classAttributeDao.deleteByClassId(categoryId);
+            if (CollectionUtils.isNotEmpty(attrs)) {
+                List<Attribute> isNoNullData = attrs.stream().filter(attribute -> StringUtils.isNotEmpty(attribute.getName())).collect(Collectors.toList());
+                if (CollectionUtils.isNotEmpty(isNoNullData)) {
+                    classAttributeDao.batchSaveAttr(isNoNullData);
+                }
             }
         }
     }
