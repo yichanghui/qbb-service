@@ -58,4 +58,6 @@ public interface ICategoryService {
     void saveCategory(Category category);
 
     Category getCategoryByCode(String classCode);
+
+    Category getCategoryByIdAndType(Long categoryId, int type);
 }
