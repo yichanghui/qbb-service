@@ -228,5 +228,6 @@
     <if test="type != null" >
       AND pr.type = #{type}
     </if>
+    ORDER BY pr.recommend_order desc ,pr.add_time DESC
   </select>
 </mapper>

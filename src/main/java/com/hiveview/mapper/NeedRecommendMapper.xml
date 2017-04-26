@@ -174,5 +174,6 @@
     <if test="type != null" >
       AND nr.type = #{type}
     </if>
+    ORDER BY nr.recommend_order desc ,nr.add_time DESC
   </select>
 </mapper>

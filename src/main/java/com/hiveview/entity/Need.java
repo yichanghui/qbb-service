@@ -56,6 +56,26 @@ public class Need {
 
     private boolean recommendShow = false;//推荐展示
 
+    private boolean openShow = false;//首页找需求展示
+
+    private Long memberViewNeedId;//会员需求查看次数
+
+    public Long getMemberViewNeedId() {
+        return memberViewNeedId;
+    }
+
+    public void setMemberViewNeedId(Long memberViewNeedId) {
+        this.memberViewNeedId = memberViewNeedId;
+    }
+
+    public boolean isOpenShow() {
+        return openShow;
+    }
+
+    public void setOpenShow(boolean openShow) {
+        this.openShow = openShow;
+    }
+
     public boolean isRecommendShow() {
         return recommendShow;
     }

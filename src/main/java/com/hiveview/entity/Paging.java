@@ -14,7 +14,7 @@ public class Paging {
 	/**
 	 * 记录总条数
 	 */
-	private long recCount = -1;
+	private long totalCount = -1;
 	/**
 	 * 记录总页数
 	 */
@@ -41,16 +41,16 @@ public class Paging {
 		this.pageSize = pageSize;
 	}
 
-	public long getRecCount() {
-		return recCount;
+	public long getTotalCount() {
+		return totalCount;
 	}
 
-	public void setRecCount(long recCount) {
-		this.recCount = recCount;
-		if (this.recCount % pageSize == 0)
-			totalPages = (int) (this.recCount / pageSize);
+	public void setTotalCount(long totalCount) {
+		this.totalCount = totalCount;
+		if (this.totalCount % pageSize == 0)
+			totalPages = (int) (this.totalCount / pageSize);
 		else
-			totalPages = (int) (this.recCount / pageSize + 1);
+			totalPages = (int) (this.totalCount / pageSize + 1);
 	}
 
 	public int getTotalPages() {

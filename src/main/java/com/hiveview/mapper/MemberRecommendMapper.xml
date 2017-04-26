@@ -232,5 +232,6 @@
     <if test="adviserType != null" >
       AND  m.adviser_type like CONCAT(#{adviserType},'%')
     </if>
+    ORDER BY mr.recommend_order desc ,mr.add_time DESC
   </select>
 </mapper>

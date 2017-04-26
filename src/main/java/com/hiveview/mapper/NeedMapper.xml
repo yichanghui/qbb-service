@@ -22,6 +22,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="className" property="className" jdbcType="VARCHAR" />
     <result column="areaFullName" property="areaFullName" jdbcType="VARCHAR" />
+    <result column="memberViewNeedId" property="memberViewNeedId"  />
     <association property="member" javaType="com.hiveview.entity.Member">
       <result column="headPortrait" property="headPortrait" jdbcType="VARCHAR" />
       <result column="memberName" property="name" jdbcType="VARCHAR" />
@@ -305,12 +306,18 @@
           m.mobile,
           m.address,
           a.full_name as areaFullName
+        <if test="openShow == true and memberId != null" >
+           ,mvn.id as memberViewNeedId
+        </if>
         FROM j_need n LEFT JOIN j_class c ON n.class_id = c.id
                       LEFT JOIN  j_member m on m.id = n.member_id
                       LEFT JOIN  j_area a on a.code = m.area_code
+                    <if test="openShow == true and memberId != null" >
+                      LEFT JOIN  j_member_view_need mvn on mvn.need_id = n.id and mvn.member_id =  #{memberId,jdbcType=BIGINT}
+                    </if>
         <where>
-            <if test="memberId != null" >
-                member_id = #{memberId,jdbcType=BIGINT}
+            <if test="openShow == false and memberId != null" >
+                n.member_id = #{memberId,jdbcType=BIGINT}
             </if>
             <if test="status != null" >
              AND  n.status = #{status,jdbcType=TINYINT}
@@ -330,6 +337,7 @@
           <if test="memberType != null " >
             AND  n.member_type  =  #{memberType}
           </if>
+          order by add_time desc
         </where>
     </select>
     <select id="getNeedDetail" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Need" >
