@@ -447,7 +447,10 @@
         AND  m.area_code like CONCAT(#{areaCode},'%')
         </if>
         <if test="adviserType != null" >
-        AND  m.adviser_type like CONCAT(#{adviserType},'%')
+          AND  m.adviser_type like CONCAT(#{adviserType},'%')
+        </if>
+        <if test="productId != null" >
+          AND  m.id IN (SELECT member_id FROM j_product WHERE id = #{productId} LIKE 999)
         </if>
         <if test="recommendShow == true" >
           AND mr.id is null

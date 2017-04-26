@@ -60,6 +60,8 @@ public class Member {
 
 	private Integer needViewCount;
 
+	private Integer productId;
+
 	private String adviserType;
 
 	private String areaCode;
@@ -314,6 +316,14 @@ public class Member {
 
 	public Date getRelateCompanyDate() {
 		return relateCompanyDate;
+	}
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public void setRelateCompanyDate(Date relateCompanyDate) {
