@@ -10,6 +10,12 @@ public class UserNeed {
 
     private String needDesc;
 
+    private String userName;
+    private String qq;
+    private String mail;
+    private String needTitle;
+    private int dataSource;
+
     private String mobile;
 
     private Date addTime;
@@ -72,5 +78,45 @@ public class UserNeed {
 
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getNeedTitle() {
+        return needTitle;
+    }
+
+    public void setNeedTitle(String needTitle) {
+        this.needTitle = needTitle;
+    }
+
+    public int getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(int dataSource) {
+        this.dataSource = dataSource;
     }
 }

@@ -385,10 +385,10 @@
     </select>
 
   <insert id="insertUserNeed" parameterType="com.hiveview.entity.UserNeed" useGeneratedKeys="true" keyProperty="id">
-    insert into j_user_need (category_code, need_desc,
-    mobile, add_time, is_contact,member_id)
-    values (#{categoryCode,jdbcType=VARCHAR}, #{needDesc,jdbcType=VARCHAR},
-    #{mobile,jdbcType=VARCHAR}, NOW(), #{isContact,jdbcType=TINYINT},#{memberId,jdbcType=BIGINT})
+    insert into j_user_need (user_name,qq,mail,need_title,category_code, need_desc,
+    mobile, add_time, is_contact,member_id,data_source)
+    values (#{userName,jdbcType=VARCHAR},#{qq,jdbcType=VARCHAR},#{mail,jdbcType=VARCHAR},#{needTitle,jdbcType=VARCHAR},#{categoryCode,jdbcType=VARCHAR}, #{needDesc,jdbcType=VARCHAR},
+    #{mobile,jdbcType=VARCHAR}, NOW(), #{isContact,jdbcType=TINYINT},#{memberId,jdbcType=BIGINT},#{dataSource,jdbcType=INTEGER})
   </insert>
 
   <!--用户自定义需求 start-->
