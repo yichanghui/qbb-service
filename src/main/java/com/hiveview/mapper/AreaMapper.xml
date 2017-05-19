@@ -21,6 +21,12 @@
     from j_area
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="getAreaByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from j_area
+    where code = #{areaCode}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from j_area
     where id = #{id,jdbcType=BIGINT}

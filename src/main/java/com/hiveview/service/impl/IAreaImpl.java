@@ -32,4 +32,9 @@ public class IAreaImpl implements IAreaService {
         return areaDao.getList(area);
     }
 
+    @Override
+    public Area getAreaByCode(String areaCode) {
+        return areaDao.getAreaByCode(areaCode);
+    }
+
 }

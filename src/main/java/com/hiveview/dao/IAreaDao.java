@@ -14,4 +14,6 @@ public interface IAreaDao extends IBaseDao<Area>{
     int updateByPrimaryKeySelective(Area record);
 
     int updateByPrimaryKey(Area record);
+
+    Area getAreaByCode(String areaCode);
 }
