@@ -124,4 +124,10 @@ public class NeedServiceImpl implements INeedService {
         needDao.deleteUserNeedByIds(ids);
         return 1;
     }
+
+	@Override
+	public int deleteUserNeedByPrimaryKey(Integer id) {
+		
+		return needDao.deleteUserNeedByPrimaryKey(id);
+	}
 }

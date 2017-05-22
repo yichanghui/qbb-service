@@ -42,4 +42,14 @@ public interface INeedDao extends IBaseDao<Need>{
     int updateUserNeedByPrimaryKey(UserNeed userNeed);
     int insertUserNeed(UserNeed userNeed);
     int deleteUserNeedByIds(List<Integer> ids);
+    
+    /**
+     *  @功能:根据id删除用户需求
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月22日
+     *  @param id
+     *  @return  
+     */
+    int deleteUserNeedByPrimaryKey(Integer id);
 }

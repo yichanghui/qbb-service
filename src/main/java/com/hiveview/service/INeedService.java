@@ -78,5 +78,14 @@ public interface INeedService {
     public List<Map<String,Object>> getLiuYanList(Map<String,Object> map);
     public int deleteUserNeedByIds(List<Integer> ids);
     /**用户从前台发布的需求（类似帮我找）end **/
-
+    
+    /**
+     *  @功能:根据id删除用户需求信息
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月22日
+     *  @param id
+     *  @return  
+     */
+    int deleteUserNeedByPrimaryKey(Integer id);
 }

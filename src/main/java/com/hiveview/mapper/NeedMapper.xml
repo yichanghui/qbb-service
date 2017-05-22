@@ -432,5 +432,9 @@
     </foreach>
   </delete>
   <!--用户自定义需求 end-->
-
+  <!--  -->
+  <delete id="deleteUserNeedByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from j_user_need
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
 </mapper>
