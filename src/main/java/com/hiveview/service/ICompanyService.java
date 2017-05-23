@@ -30,6 +30,24 @@ public interface ICompanyService {
     List<Company> getCompanyPage(Company company);
 
     int saveCompany(Company company);
+    
+    /**
+     *  @功能:查询全部的公司信息倒序排序
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月23日
+     *  @return  
+     */
+    List<Company> queryCompanyList();
 
+    
+    /**
+     *  @功能:通过公司名称查询公司
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月23日
+     *  @return  
+     */
+    List<Company> queryCompanyListByName(String name);
 
 }

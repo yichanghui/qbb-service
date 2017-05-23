@@ -32,5 +32,26 @@ public interface ICompanyDao extends IBaseDao<Company>{
     List<Company> getCompany(Company company);
 
     List<Map<String,Object>> getCompanyByCompanyIds(List<Long> list);
+    
+    
+    /**
+     *  @功能:查询全部的公司信息按时间倒序排列
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月23日
+     *  @return  
+     */
+    List<Company> queryCompanyList();
+    
+    
+    /**
+     *  @功能:通过公司名称查询公司
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月23日
+     *  @return  
+     */
+    List<Company> queryCompanyListByName(String name);
+    
 
 }

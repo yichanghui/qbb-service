@@ -42,4 +42,14 @@ public class CompanyServiceImpl implements ICompanyService {
 
         return companyDao.getCompany(company);
     }
+	@Override
+	public List<Company> queryCompanyList() {
+		
+		return companyDao.queryCompanyList();
+	}
+	@Override
+	public List<Company> queryCompanyListByName(String name) {
+		System.err.println("========================"+name);
+		return companyDao.queryCompanyListByName(name);
+	}
 }

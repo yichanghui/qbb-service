@@ -10,6 +10,7 @@
     <result column="introduce" property="introduce" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="membercount" property="membercount" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, company_name, add_time, type_link_id, address, introduce, update_time, code
@@ -165,5 +166,16 @@
         #{id}
       </foreach>
     </where>
+  </select>
+  <!-- 全查询公司的信息 -->
+  <select id="queryCompanyList" resultMap="BaseResultMap" >
+    select DISTINCT c.id, c.company_name, c.add_time, c.type_link_id, c.address, c.introduce, c.update_time, c.code,(select count(*) from j_member a where c.id=a.company_id ) membercount from j_company c,j_member m where c.id=m.company_id order by add_time desc
+  </select>
+  
+  <!-- 通过名称查询公司的信息-->
+  <select id="queryCompanyListByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from j_company where company_name=#{name,jdbcType=VARCHAR}
   </select>
 </mapper>
