@@ -1,5 +1,7 @@
 package com.hiveview.dao;
 
+import java.util.List;
+
 import com.hiveview.entity.Area;
 
 public interface IAreaDao extends IBaseDao<Area>{
@@ -16,4 +18,13 @@ public interface IAreaDao extends IBaseDao<Area>{
     int updateByPrimaryKey(Area record);
 
     Area getAreaByCode(String areaCode);
+    
+    /**
+     *  @功能:查询全部的地区
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月23日
+     *  @return  
+     */
+    List<Area> queryAllArea();
 }

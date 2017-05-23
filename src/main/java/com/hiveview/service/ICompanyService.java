@@ -50,4 +50,25 @@ public interface ICompanyService {
      */
     List<Company> queryCompanyListByName(String name);
 
+    
+    
+    /**
+     *  @功能:根据id查询一个公司
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月23日
+     *  @param id
+     *  @return  
+     */
+    Company selectByPrimaryKey(Long id);
+    
+    /**
+     *  @功能:修改公司信息
+     *  @作者:李文辉 
+     *  @代号:ab
+     *  @时间:2017年5月23日
+     *  @param record
+     *  @return  
+     */
+    int updateByPrimaryKeySelective(Company record);
 }

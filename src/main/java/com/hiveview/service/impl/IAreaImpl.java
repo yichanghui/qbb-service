@@ -37,4 +37,10 @@ public class IAreaImpl implements IAreaService {
         return areaDao.getAreaByCode(areaCode);
     }
 
+	@Override
+	public List<Area> queryAllArea() {
+		
+		return areaDao.queryAllArea();
+	}
+
 }

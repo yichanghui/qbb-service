@@ -24,7 +24,8 @@ public class Company {
     private String code;
     
     private Integer membercount;
-    
+   
+    private Integer areaId;
 
     public String getLogo() {
         return logo;
@@ -113,6 +114,15 @@ public class Company {
 	public void setMembercount(Integer membercount) {
 		this.membercount = membercount;
 	}
+
+	public Integer getAreaId() {
+		return areaId;
+	}
+
+	public void setAreaId(Integer areaId) {
+		this.areaId = areaId;
+	}
     
+	
     
 }

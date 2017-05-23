@@ -11,9 +11,11 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="membercount" property="membercount" jdbcType="INTEGER"/>
+    <result column="summary" property="summary" jdbcType="VARCHAR"/>
+    <result column="area_id" property="areaId" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, company_name, add_time, type_link_id, address, introduce, update_time, code
+    id, company_name,summary, add_time, type_link_id, address, introduce, update_time, code,area_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -100,8 +102,14 @@
       <if test="typeLinkId != null" >
         type_link_id = #{typeLinkId,jdbcType=BIGINT},
       </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
       </if>
       <if test="introduce != null" >
         introduce = #{introduce,jdbcType=VARCHAR},
@@ -174,8 +182,6 @@
   
   <!-- 通过名称查询公司的信息-->
   <select id="queryCompanyListByName" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select 
-    <include refid="Base_Column_List" />
-    from j_company where company_name=#{name,jdbcType=VARCHAR}
+    select DISTINCT c.id, c.company_name, c.add_time, c.type_link_id, c.address, c.introduce, c.update_time, c.code,(select count(*) from j_member a where c.id=a.company_id ) membercount from j_company c,j_member m where c.id=m.company_id and c.company_name=#{name,jdbcType=VARCHAR}
   </select>
 </mapper>
