@@ -182,6 +182,6 @@
   
   <!-- 通过名称查询公司的信息-->
   <select id="queryCompanyListByName" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select DISTINCT c.id, c.company_name, c.add_time, c.type_link_id, c.address, c.introduce, c.update_time, c.code,(select count(*) from j_member a where c.id=a.company_id ) membercount from j_company c,j_member m where c.id=m.company_id and c.company_name=#{name,jdbcType=VARCHAR}
+    select DISTINCT c.id, c.company_name, c.add_time, c.type_link_id, c.address, c.introduce, c.update_time, c.code,(select count(*) from j_member a where c.id=a.company_id ) membercount from j_company c,j_member m where c.id=m.company_id and c.company_name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
   </select>
 </mapper>
