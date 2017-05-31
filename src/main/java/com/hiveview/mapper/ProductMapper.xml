@@ -33,6 +33,7 @@
       <result column="workAge" property="workAge"/>
       <result column="logo" property="logo"/>
       <result column="companyName" property="companyName"/>
+      <result column="mId" property="id"/>
     </association>
   </resultMap>
   <sql id="Base_Column_List" >
@@ -291,7 +292,7 @@
           </if>
           and p.status != 2
         </where>
-        order by add_time desc
+        order by p.update_time DESC,p.add_time desc
     </select>
     <select id="getOpendProduct" resultMap="BaseResultMap" parameterType="com.hiveview.entity.Product" >
         SELECT
@@ -313,6 +314,7 @@
           p.real_price,
           p.summary,
           c.name as className,
+          m.id as mId,
           m.name as memberName,
           m.head_portrait,
           m.description,

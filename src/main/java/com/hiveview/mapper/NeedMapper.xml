@@ -54,6 +54,7 @@
           n.hits,
           n.end_time,
           n.need_mobile,
+          n.charge_type,
           m.name as memberName,
           m.mobile,
           m.address
