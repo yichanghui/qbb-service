@@ -36,6 +36,16 @@ public class Category {
 
     private String content;
 
+    private String oldName;//修改类目名称需要
+
+    public String getOldName() {
+        return oldName;
+    }
+
+    public void setOldName(String oldName) {
+        this.oldName = oldName;
+    }
+
     public String getContent() {
         return content;
     }

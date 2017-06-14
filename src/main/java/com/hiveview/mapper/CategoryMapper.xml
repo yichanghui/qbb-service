@@ -311,4 +311,11 @@
       AND  status != 2
     </where>
   </select>
+  <select id="checkCategoryNameRepetition" resultType="int" >
+    SELECT count(1) FROM j_class WHERE name = #{name} and type =#{type};
+  </select>
+  <update id="updateSecondLevelOfSonCategoryFullName"  parameterType="com.hiveview.entity.Category"  >
+    UPDATE j_class set full_name = replace(full_name,CONCAT('-',#{oldName},'-'),CONCAT('-',#{name},'-')) WHERE type = #{type} and code LIKE CONCAT(#{code},'%');
+  </update>
+
 </mapper>

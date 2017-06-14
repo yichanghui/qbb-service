@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import utils.LevelUtil;
+import utils.log.LogMgr;
 
 import java.util.Date;
 import java.util.List;
@@ -80,7 +81,21 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public void updateCategoryAndAttr(Category category) {
-//        categoryDao.updateByPrimaryKeySelective(category);
+        String oldName = category.getOldName();
+        String name = category.getName();
+        if (!oldName.equals(name)) {
+            String newFullName = null;
+            String[] strs = category.getFullName().split("-");
+            if (category.getLevel() == 2) {
+                newFullName = strs[0] + "-" + name;
+                categoryDao.updateSecondLevelOfSonCategoryFullName(category);
+            }
+            if (category.getLevel() == 3) {
+                newFullName = strs[0]+"-"+ strs[1] +"-" + name;
+            }
+            category.setFullName(newFullName);
+        }
+        categoryDao.updateByPrimaryKeySelective(category);
         List<Attribute> attrs = category.getAttributes();
         Long categoryId = category.getId();
         if (categoryId != null) {
@@ -121,6 +136,28 @@ public class CategoryServiceImpl implements ICategoryService {
         category.setId(categoryId);
         category.setType(type);
         return categoryDao.get(category);
+    }
+
+    @Override
+    public boolean checkCategoryNameRepetition(String name, Integer type) {
+        int count = categoryDao.checkCategoryNameRepetition(name, type);
+        return count >0?true:false;
+    }
+
+    @Override
+    public boolean updateSecondLevelOfSonCategoryFullName(Category category) {
+        boolean isSuccess = false;
+        try {
+            if (category.getLevel() == 2) {
+                category.setName("-" + category.getName() + "-");
+                category.setOldName("-" + category.getOldName() + "-");
+            }
+            categoryDao.updateSecondLevelOfSonCategoryFullName(category);
+            isSuccess = true;
+        } catch (Exception e) {
+            LogMgr.writeErrorLog(e);
+        }
+        return isSuccess;
     }
 
     @Override
